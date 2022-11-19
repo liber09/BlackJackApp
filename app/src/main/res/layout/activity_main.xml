@@ -4,15 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D4AF37"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
+    <ImageView
+        android:id="@+id/backgoundImageView"
+        android:layout_width="743dp"
+        android:layout_height="1139dp"
+        android:contentDescription="background image with poker cards and a chip pile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/first_page_background" />
+
+    <TextView
+        android:id="@+id/jackTextView"
+        android:layout_width="198dp"
+        android:layout_height="85dp"
+        android:fontFamily="@font/bonbon"
+        android:text="Jack"
+        android:textAlignment="center"
+        android:textColor="#D4AF37"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.835"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/blackTextView" />
+
+    <TextView
+        android:id="@+id/blackTextView"
+        android:layout_width="198dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/bonbon"
+        android:text="Black"
+        android:textAlignment="center"
+        android:textColor="#D4AF37"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.868"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="204dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="280dp"
+        android:background="#D4AF37"
+        android:contentDescription="Play Button"
+        android:fontFamily="@font/hanalei_fill"
+        android:text="PLAY"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.264"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/jackTextView"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
