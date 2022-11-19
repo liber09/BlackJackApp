@@ -8,40 +8,38 @@
     tools:context=".GameActivity">
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/dealerImageView"
         android:layout_width="419dp"
         android:layout_height="563dp"
+        android:layout_marginBottom="328dp"
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toTopOf="@+id/doubleButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/dealer"
-        tools:layout_editor_absoluteY="-72dp" />
+        app:srcCompat="@drawable/dealer" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/tableLogoImageView"
         android:layout_width="435dp"
         android:layout_height="156dp"
         android:layout_marginTop="5dp"
+        android:contentDescription="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/dealerImageView"
         app:srcCompat="@drawable/logo_table" />
 
     <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="733dp"
-        android:layout_height="444dp"
-        app:srcCompat="@drawable/wood"
-        tools:layout_editor_absoluteY="930dp" />
-
-    <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/woodImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="4dp"
+        android:contentDescription="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/tableLogoImageView"
         app:srcCompat="@drawable/wood" />
 
     <Button
@@ -51,10 +49,11 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:backgroundTint="#7C0B0B"
+        android:contentDescription="stay button"
         android:fontFamily="@font/itim"
         android:text="Stay"
         android:textAlignment="center"
-        android:textColor="#000000"
+        android:textColor="#0097A7"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/doubleButton"
@@ -67,10 +66,11 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:backgroundTint="#26419E"
+        android:contentDescription="Double button"
         android:fontFamily="@font/itim"
         android:text="Double"
         android:textAlignment="center"
-        android:textColor="#000000"
+        android:textColor="#26A69A"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button3"
@@ -83,8 +83,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:backgroundTint="#14B011"
+        android:contentDescription="Draw button"
         android:fontFamily="@font/itim"
-        android:text="drawButton"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textStyle="bold"
@@ -92,4 +92,61 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/doubleButton"
         tools:text="Draw" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="44dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="16dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/doubleButton"
+        app:srcCompat="@drawable/chip_10"
+        tools:layout_editor_absoluteX="183dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="44dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="16dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/stayButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/chip_1" />
+
+    <ImageButton
+        android:id="@+id/imageButton6"
+        android:layout_width="44dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="16dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/doubleButton"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton4"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toEndOf="@+id/imageButton2"
+        app:srcCompat="@drawable/chip_5" />
+
+    <ImageButton
+        android:id="@+id/imageButton7"
+        android:layout_width="44dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="16dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/chip_100" />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="44dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="16dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/doubleButton"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton7"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toEndOf="@+id/imageButton4"
+        app:srcCompat="@drawable/chip_25" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
