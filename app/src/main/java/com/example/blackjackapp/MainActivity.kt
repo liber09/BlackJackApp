@@ -11,6 +11,9 @@ class MainActivity : AppCompatActivity() {
 
         val cards = Deck()
         cards.createFullDeck()
-        Log.d("!!!",cards.cards.count().toString())
+        cards.shuffleDeck()
+        cards.cards.forEach(){
+            Log.d("!!!",it.toString())
+        }
     }
 }
