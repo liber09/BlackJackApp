@@ -23,9 +23,10 @@
         android:id="@+id/tableLogoImageView"
         android:layout_width="435dp"
         android:layout_height="156dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
         android:contentDescription="@null"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.291"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dealerImageView"
         app:srcCompat="@drawable/logo_table" />
@@ -73,11 +74,11 @@
         android:textColor="#26A69A"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintEnd_toStartOf="@+id/drawButton"
         app:layout_constraintStart_toEndOf="@+id/stayButton" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/drawButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -94,59 +95,126 @@
         tools:text="Draw" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/betTenButton"
         android:layout_width="44dp"
         android:layout_height="38dp"
         android:layout_marginBottom="16dp"
+        android:contentDescription="Bet ten"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/doubleButton"
         app:srcCompat="@drawable/chip_10"
         tools:layout_editor_absoluteX="183dp" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/betOneButton"
         android:layout_width="44dp"
         android:layout_height="38dp"
         android:layout_marginStart="28dp"
         android:layout_marginBottom="16dp"
+        android:contentDescription="Bet one"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/stayButton"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/chip_1" />
 
     <ImageButton
-        android:id="@+id/imageButton6"
+        android:id="@+id/betFiveButton"
         android:layout_width="44dp"
         android:layout_height="38dp"
         android:layout_marginBottom="16dp"
+        android:contentDescription="Bet five"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/doubleButton"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton4"
+        app:layout_constraintEnd_toStartOf="@+id/betTenButton"
         app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toEndOf="@+id/imageButton2"
+        app:layout_constraintStart_toEndOf="@+id/betOneButton"
         app:srcCompat="@drawable/chip_5" />
 
     <ImageButton
-        android:id="@+id/imageButton7"
+        android:id="@+id/betOneHundredButton"
         android:layout_width="44dp"
         android:layout_height="38dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="16dp"
+        android:contentDescription="Bet onehundred"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/drawButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/chip_100" />
 
     <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/betTwentyFiveButton"
         android:layout_width="44dp"
         android:layout_height="38dp"
         android:layout_marginBottom="16dp"
+        android:contentDescription="Bet twentyfive"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/doubleButton"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton7"
+        app:layout_constraintEnd_toStartOf="@+id/betOneHundredButton"
         app:layout_constraintHorizontal_bias="0.514"
-        app:layout_constraintStart_toEndOf="@+id/imageButton4"
+        app:layout_constraintStart_toEndOf="@+id/betTenButton"
         app:srcCompat="@drawable/chip_25" />
+
+    <TextView
+        android:id="@+id/moneyLeftTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:contentDescription="Money left"
+        android:fontFamily="@font/itim"
+        android:text="$ 1500"
+        android:textColor="#FEFEFE"
+        app:layout_constraintBottom_toTopOf="@+id/betTenButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/playerStarImageView"
+        android:layout_width="77dp"
+        android:layout_height="195dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginBottom="96dp"
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toTopOf="@+id/betOneButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/star" />
+
+    <ImageView
+        android:id="@+id/dealerStarImageView"
+        android:layout_width="77dp"
+        android:layout_height="195dp"
+        android:layout_marginTop="372dp"
+        android:layout_marginEnd="52dp"
+        android:contentDescription="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/star" />
+
+    <TextView
+        android:id="@+id/playerValueTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="534dp"
+        android:layout_marginEnd="37dp"
+        android:contentDescription="Dealer current cards value"
+        android:text="21"
+        app:layout_constraintEnd_toEndOf="@+id/dealerStarImageView"
+        app:layout_constraintStart_toStartOf="@+id/dealerStarImageView"
+        app:layout_constraintTop_toTopOf="@+id/dealerImageView" />
+
+    <TextView
+        android:id="@+id/playerValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="37dp"
+        android:contentDescription="Your current cards value"
+        android:text="21"
+        app:layout_constraintBottom_toBottomOf="@+id/playerStarImageView"
+        app:layout_constraintEnd_toEndOf="@+id/playerStarImageView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/playerStarImageView"
+        app:layout_constraintTop_toTopOf="@+id/playerStarImageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
