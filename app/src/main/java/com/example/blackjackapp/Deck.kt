@@ -16,7 +16,7 @@ class Deck {
           }
       }
    }
-    // to get a shuffled deck.
+    // to get a shuffled deck
     fun shuffleDeck(){
         cards.shuffle()
     }
