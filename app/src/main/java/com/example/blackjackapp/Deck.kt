@@ -70,4 +70,20 @@ class Deck {
         }
         return totalValueOnHand
     }
+
+    // Returns the number of cards in deck.
+    fun getDeckSize() : Int{
+        return this.cards.size
+    }
+
+    /*
+    Takes all cards in player or dealer list and
+    returns them to start deck and then clears dealer or player list
+     */
+    fun moveAllToStartDeck(startDeck : Deck){
+        for(card in this.cards){
+            startDeck.addCard(card)
+        }
+        this.cards.clear()
+    }
 }
