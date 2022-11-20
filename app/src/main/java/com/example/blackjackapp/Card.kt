@@ -9,4 +9,9 @@ class Card (var value : Value, var suit : Suit){
     override fun toString() : String{
         return suit.toString().plus(" - ").plus(value.toString())
     }
+
+    // Returns the value of the cards that it gets from enum list.
+    fun getValueOfCard() : Value{
+        return this.value
+    }
 }
