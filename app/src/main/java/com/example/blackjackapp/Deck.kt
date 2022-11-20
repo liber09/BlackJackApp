@@ -30,7 +30,7 @@ class Deck {
     }
 
     //Remove a card from the deck at position i
-    private fun removeCard(i:Int){
+    fun removeCard(i:Int){
         cards.removeAt(i)
     }
 

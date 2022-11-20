@@ -8,13 +8,13 @@
 
     <ImageView
         android:id="@+id/lostImageView"
-        android:layout_width="403dp"
-        android:layout_height="435dp"
+        android:layout_width="402dp"
+        android:layout_height="535dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/cat_laughing" />
 
     <TextView
@@ -22,22 +22,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
-        android:layout_marginBottom="20dp"
         android:fontFamily="@font/bungee_shade"
         android:text="YOU LOOSE"
         android:textColor="#FF0000"
         android:textSize="46sp"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="32dp"
         android:backgroundTint="#D4AF37"
         android:fontFamily="@font/bungee_shade"
         android:text="TRY AGAIN"
@@ -46,7 +46,6 @@
         app:cornerRadius="30sp"
         app:layout_constraintBottom_toTopOf="@+id/lostImageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lostTextView" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

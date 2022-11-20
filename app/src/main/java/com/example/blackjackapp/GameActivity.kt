@@ -20,6 +20,6 @@ class GameActivity : AppCompatActivity() {
         transaction.commit()
     }
     fun getDealerFirstCards(){
-        dealerCards.add(cards)
+        //dealerCards.add(card)
     }
 }
