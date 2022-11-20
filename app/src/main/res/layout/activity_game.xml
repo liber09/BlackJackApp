@@ -71,7 +71,7 @@
         android:backgroundTint="#26419E"
         android:contentDescription="Double button"
         android:fontFamily="@font/itim"
-        android:onClick="addCardFragment"
+        android:onClick="addDealerInitialCards"
         android:text="Double"
         android:textAlignment="center"
         android:textColor="#26A69A"
@@ -225,13 +225,17 @@
 
     <FrameLayout
         android:id="@+id/container"
-        android:layout_width="412dp"
-        android:layout_height="277dp"
-        android:layout_marginTop="396dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_width="262dp"
+        android:layout_height="193dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="164dp"
+        app:layout_constraintBottom_toTopOf="@+id/moneyLeftTextView"
+        app:layout_constraintEnd_toStartOf="@+id/dealerStarImageView"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
     </FrameLayout>
 
