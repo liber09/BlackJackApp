@@ -9,8 +9,9 @@
 
 
     <FrameLayout
-        android:layout_width="353dp"
-        android:layout_height="15dp"
+        android:id="@+id/container"
+        android:layout_width="373dp"
+        android:layout_height="116dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,13 +21,15 @@
 
     <ImageView
         android:id="@+id/backgoundImageView"
-        android:layout_width="743dp"
-        android:layout_height="1139dp"
+        android:layout_width="988dp"
+        android:layout_height="1252dp"
         android:contentDescription="background image with poker cards and a chip pile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.96"
         app:srcCompat="@drawable/first_page_background" />
 
     <Button
@@ -36,9 +39,11 @@
         android:layout_marginTop="262dp"
         android:backgroundTint="#D4AF37"
         android:fontFamily="@font/hanalei_fill"
+        android:onClick="addCardFragment"
         android:text="Play"
         android:textColor="#000000"
         android:textSize="48sp"
+        app:cornerRadius="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.406"
