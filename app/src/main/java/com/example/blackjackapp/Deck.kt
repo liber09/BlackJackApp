@@ -1,5 +1,6 @@
 package com.example.blackjackapp
 
+import android.util.Log
 import java.util.*
 
 class Deck {
@@ -47,16 +48,16 @@ class Deck {
         var aces = 0
         for(card in cards){
             when(card.value){
-                TWO -> totalValueOnHand += 2
-                THREE -> totalValueOnHand += 3
-                FOUR -> totalValueOnHand += 4
-                FIVE -> totalValueOnHand += 5
-                SIX -> totalValueOnHand += 6
-                SEVEN -> totalValueOnHand += 7
-                EIGHT -> totalValueOnHand += 8
-                NINE -> totalValueOnHand += 9
-                TEN,JACK,QUEEN,KING -> totalValueOnHand += 10
-                ACE -> aces += 1 // Special solution since ace can be worth 1 or 11.
+                Value.TWO -> totalValueOnHand += 2
+                Value.THREE -> totalValueOnHand += 3
+                Value.FOUR -> totalValueOnHand += 4
+                Value.FIVE -> totalValueOnHand += 5
+                Value.SIX -> totalValueOnHand += 6
+                Value.SEVEN -> totalValueOnHand += 7
+                Value.EIGHT -> totalValueOnHand += 8
+                Value.NINE -> totalValueOnHand += 9
+                Value.TEN,Value.JACK,Value.QUEEN,Value.KING -> totalValueOnHand += 10
+                Value.ACE -> aces += 1 // Special solution since ace can be worth 1 or 11.
                 else ->{
                     Log.d("!!!","Something gone wrong when reading card value.")
                 }

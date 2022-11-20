@@ -71,7 +71,7 @@
         android:backgroundTint="#26419E"
         android:contentDescription="Double button"
         android:fontFamily="@font/itim"
-        android:onClick="addDealerInitialCards"
+        android:onClick="addInitialCards"
         android:text="Double"
         android:textAlignment="center"
         android:textColor="#26A69A"
@@ -189,25 +189,26 @@
         android:id="@+id/dealerStarImageView"
         android:layout_width="77dp"
         android:layout_height="195dp"
-        android:layout_marginTop="372dp"
-        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="30dp"
         android:contentDescription="@null"
+        app:layout_constraintBottom_toTopOf="@+id/tableLogoImageView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/dealerCardContainer"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/star" />
 
     <TextView
-        android:id="@+id/playerValueTextView2"
+        android:id="@+id/dealerValueTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="534dp"
-        android:layout_marginEnd="37dp"
         android:contentDescription="Dealer current cards value"
         android:text="21"
+        app:layout_constraintBottom_toBottomOf="@+id/dealerStarImageView"
         app:layout_constraintEnd_toEndOf="@+id/dealerStarImageView"
         app:layout_constraintStart_toStartOf="@+id/dealerStarImageView"
-        app:layout_constraintTop_toTopOf="@+id/dealerImageView" />
+        app:layout_constraintTop_toTopOf="@+id/dealerStarImageView" />
 
     <TextView
         android:id="@+id/playerValueTextView"
@@ -224,18 +225,27 @@
         app:layout_constraintTop_toTopOf="@+id/playerStarImageView" />
 
     <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="262dp"
-        android:layout_height="193dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="164dp"
+        android:id="@+id/playerCardContainer"
+        android:layout_width="268dp"
+        android:layout_height="189dp"
         app:layout_constraintBottom_toTopOf="@+id/moneyLeftTextView"
-        app:layout_constraintEnd_toStartOf="@+id/dealerStarImageView"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dealerImageView"
         app:layout_constraintVertical_bias="1.0">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/dealerCardContainer"
+        android:layout_width="293dp"
+        android:layout_height="171dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/tableLogoImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.245"
+        app:layout_constraintStart_toStartOf="parent">
 
     </FrameLayout>
 
