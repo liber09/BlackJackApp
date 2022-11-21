@@ -6,18 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#033C4C"
-    tools:context=".GameActivity">
+    tools:context=".GameActivity"
+    tools:layout_editor_absoluteX="-1dp"
+    tools:layout_editor_absoluteY="-12dp">
 
     <ImageView
         android:id="@+id/dealerImageView"
         android:layout_width="419dp"
         android:layout_height="563dp"
-        android:layout_marginBottom="328dp"
+        android:layout_marginTop="-80dp"
         android:contentDescription="@null"
-        app:layout_constraintBottom_toTopOf="@+id/doubleButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/dealer" />
 
     <ImageView
@@ -27,7 +29,7 @@
         android:layout_marginTop="8dp"
         android:contentDescription="@null"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.291"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dealerImageView"
         app:srcCompat="@drawable/logo_table" />
@@ -36,8 +38,10 @@
         android:id="@+id/woodImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="-170dp"
         android:contentDescription="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,6 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="4dp"
         android:backgroundTint="#7C0B0B"
         android:contentDescription="stay button"
         android:fontFamily="@font/itim"
@@ -68,6 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="4dp"
         android:backgroundTint="#26419E"
         android:contentDescription="Double button"
         android:fontFamily="@font/itim"
@@ -87,6 +93,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="4dp"
         android:backgroundTint="#14B011"
         android:contentDescription="Draw button"
         android:fontFamily="@font/itim"
@@ -103,11 +110,12 @@
         android:id="@+id/betTenButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         android:contentDescription="Bet ten"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/doubleButton"
         app:layout_constraintEnd_toStartOf="@+id/betOneHundredButton"
+        app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toEndOf="@+id/betOneButton"
         app:srcCompat="@drawable/chip_10" />
 
@@ -116,7 +124,7 @@
         android:layout_width="48dp"
         android:layout_height="49dp"
         android:layout_marginStart="28dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="4dp"
         android:contentDescription="Bet one"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/stayButton"
@@ -127,12 +135,12 @@
         android:id="@+id/betFiveButton"
         android:layout_width="50dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         android:contentDescription="Bet five"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/doubleButton"
         app:layout_constraintEnd_toStartOf="@+id/betTenButton"
-        app:layout_constraintHorizontal_bias="0.622"
+        app:layout_constraintHorizontal_bias="0.557"
         app:layout_constraintStart_toEndOf="@+id/betOneButton"
         app:srcCompat="@drawable/chip_5" />
 
@@ -141,7 +149,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginEnd="28dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         android:contentDescription="Bet onehundred"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/drawButton"
@@ -152,12 +160,12 @@
         android:id="@+id/betTwentyFiveButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         android:contentDescription="Bet twentyfive"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/doubleButton"
         app:layout_constraintEnd_toStartOf="@+id/betOneHundredButton"
-        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toEndOf="@+id/betTenButton"
         app:srcCompat="@drawable/chip_25" />
 
@@ -165,20 +173,21 @@
         android:id="@+id/moneyLeftTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:contentDescription="Money left"
         android:fontFamily="@font/itim"
         android:text="$ 1500"
         android:textColor="#FEFEFE"
         app:layout_constraintBottom_toTopOf="@+id/betTenButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/playerStarImageView"
         android:layout_width="77dp"
         android:layout_height="195dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginBottom="96dp"
+        android:layout_marginStart="40dp"
         android:contentDescription="@null"
         app:layout_constraintBottom_toTopOf="@+id/betOneButton"
         app:layout_constraintStart_toStartOf="parent"
@@ -195,7 +204,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/dealerCardContainer"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.985"
         app:srcCompat="@drawable/star" />
 
     <TextView
@@ -207,8 +216,10 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/dealerStarImageView"
         app:layout_constraintEnd_toEndOf="@+id/dealerStarImageView"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="@+id/dealerStarImageView"
-        app:layout_constraintTop_toTopOf="@+id/dealerStarImageView" />
+        app:layout_constraintTop_toTopOf="@+id/dealerStarImageView"
+        app:layout_constraintVertical_bias="0.572" />
 
     <TextView
         android:id="@+id/playerValueTextView"
@@ -221,20 +232,22 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/playerStarImageView"
         app:layout_constraintEnd_toEndOf="@+id/playerStarImageView"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/playerStarImageView"
-        app:layout_constraintTop_toTopOf="@+id/playerStarImageView" />
+        app:layout_constraintTop_toTopOf="@+id/playerStarImageView"
+        app:layout_constraintVertical_bias="0.462" />
 
     <FrameLayout
         android:id="@+id/playerCardContainer"
         android:layout_width="268dp"
         android:layout_height="189dp"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toTopOf="@+id/moneyLeftTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dealerImageView"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.432">
 
     </FrameLayout>
 
@@ -242,12 +255,25 @@
         android:id="@+id/dealerCardContainer"
         android:layout_width="293dp"
         android:layout_height="171dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toTopOf="@+id/tableLogoImageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.245"
+        app:layout_constraintHorizontal_bias="0.237"
         app:layout_constraintStart_toStartOf="parent">
 
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/roundResultTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bungee_shade"
+        android:textColor="#74D716"
+        android:textSize="25sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="447dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
