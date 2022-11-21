@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import org.w3c.dom.Text
 import java.util.*
 
 
@@ -141,6 +142,7 @@ class GameActivity : AppCompatActivity() {
         updateCardsValue()
     }
 
+    // THis function shows the dealers initial hidden card
     fun revealDealerCards(){
         //Use the suit and value of card to generate filename to be able to dynamically set image to card
         var dealerCard = dealerCards.getCard(1)
@@ -156,27 +158,54 @@ class GameActivity : AppCompatActivity() {
         var dealerHandValue = Integer.parseInt(dealerHandValueTextView.text.toString())
         while (dealerHandValue < 17){
             drawDealerCard()
+            dealerHandValue = dealerHandValueTextView.text.toString().toInt()
+            if(dealerHandValue > 21){
+                var resultTextView = findViewById<TextView>(R.id.roundResultTextView)
+                resultTextView.text = "Congratulations you won this round!"
+                resultTextView.visibility = View.VISIBLE
+            }
         }
-
-
+        var drawButton = findViewById<Button>(R.id.drawButton)
+        drawButton.text = "New cards"
+        drawButton.setOnClickListener {
+            resetForNextRound()
+        }
     }
+    //Dealer draws a new card
     fun drawDealerCard(){
-        dealerCards.drawCard(cards)
+        dealerCards.drawCard(cards) // Dealer draws the card
+        // Get the card and apply image to it
         var dealerCard = dealerCards.getCard(dealerCards.cards.size - 1)
         val fileName = dealerCard.toString()
         dealerCard.imageName = fileName
-        var dealerCardPlaceholder = findViewById<ImageView>(R.id.newDealerCard3)
+        var dealerCardPlaceholder = findViewById<ImageView>(R.id.newDealerCard3) // First extra card
         if (dealerCards.cards.size == 4) {
-            dealerCardPlaceholder = findViewById<ImageView>(R.id.newDealerCard4)
+            dealerCardPlaceholder = findViewById<ImageView>(R.id.newDealerCard4) //Second extra card
         } else if (playerCards.cards.size == 5) {
-            dealerCardPlaceholder = findViewById<ImageView>(R.id.newDealerCard5)
+            dealerCardPlaceholder = findViewById<ImageView>(R.id.newDealerCard5) //Third extra card
         } else {
-            dealerCardPlaceholder = findViewById<ImageView>(R.id.newDealerCard6             )
+            dealerCardPlaceholder = findViewById<ImageView>(R.id.newDealerCard6) //Fourth extra card
         }
-        dealerCardPlaceholder.visibility = View.VISIBLE
+        dealerCardPlaceholder.visibility = View.VISIBLE // Make the card visible on screen
         val uriDealer = "@drawable/".plus(dealerCard.imageName)
         val imageResource = resources.getIdentifier(uriDealer, null, packageName)
         dealerCardPlaceholder.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResource))
-        updateCardsValue()
+        updateCardsValue() //Update the score
+    }
+
+    //Reset the gameround and prepare for next round
+    fun resetForNextRound(){
+        dealerCards.moveAllToStartDeck(cards) //Move the cards back to the deck
+        playerCards.moveAllToStartDeck(cards) //Move the cards back to the deck
+        var playerScore = findViewById<TextView>(R.id.playerValueTextView)
+        playerScore.text = "0" //Set player score to 0
+        var dealerScore = findViewById<TextView>(R.id.dealerValueTextView)
+        playerScore.text = "0" //Set dealer score to 0
+        //Change text and function of draw button to start
+        var drawButton = findViewById<Button>(R.id.drawButton)
+        drawButton.text = "Start"
+        drawButton.setOnClickListener {
+            setUpGame()
+        }
     }
 }
