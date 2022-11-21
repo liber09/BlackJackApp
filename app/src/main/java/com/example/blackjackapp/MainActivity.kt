@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         val buttonClick = findViewById<Button>(R.id.playButton)
         buttonClick.setOnClickListener{
-            val gameScreen = Intent(this,GameActivity::class.java)
+            val gameScreen = Intent(this,GameActivity::class.java) //Get a reference to the game activity screen
             startActivity(gameScreen)
         }
     }

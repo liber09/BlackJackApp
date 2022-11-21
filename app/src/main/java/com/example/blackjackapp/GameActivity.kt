@@ -104,15 +104,16 @@ class GameActivity : AppCompatActivity() {
             drawPlayerCard()
         }
     }
-
+    // Update the value of both player dealer cards
     fun updateCardsValue(){
-        val playerScore = findViewById<TextView>(R.id.playerValueTextView)
+        val playerScore = findViewById<TextView>(R.id.playerValueTextView)  // Get a reference to the players score
         val dealerScore = findViewById<TextView>(R.id.dealerValueTextView)
         playerScore.text = playerCards.cardsValue().toString()
         dealerScore.text = dealerCards.cardsValue().toString()
         checkIfPlayerLost()
     }
 
+    //Check if the player lost the round, if so print message to screen
     fun checkIfPlayerLost(){
         val playerScore = findViewById<TextView>(R.id.playerValueTextView)
         if (playerScore.text.toString().toInt() >21){
@@ -121,34 +122,34 @@ class GameActivity : AppCompatActivity() {
             resultTextView.visibility = View.VISIBLE
         }
     }
-
+    //Draws the additional player cards to the board
     fun drawPlayerCard() {
-        playerCards.drawCard(cards)
-        var playerCard = playerCards.getCard(playerCards.cards.size - 1)
-        val fileName = playerCard.toString()
-        playerCard.imageName = fileName
-        var playerCardPlaceholder = findViewById<ImageView>(R.id.playerCardImageView3)
-        if (playerCards.cards.size == 4) {
-            playerCardPlaceholder = findViewById<ImageView>(R.id.playerCardImageView4)
-        } else if (playerCards.cards.size == 5) {
-            playerCardPlaceholder = findViewById<ImageView>(R.id.playerCardImageView5)
-        } else {
-            playerCardPlaceholder = findViewById<ImageView>(R.id.playerCardImageView6)
+        playerCards.drawCard(cards) // Draw a ned card from the deck
+        var playerCard = playerCards.getCard(playerCards.cards.size - 1) // Get the latest card from the players stack of cards
+        val fileName = playerCard.toString() // Get the filename
+        playerCard.imageName = fileName // Save the filename to the playerCard object
+        var playerCardPlaceholder = findViewById<ImageView>(R.id.playerCardImageView3) // Get the placeholder for where on the screen it should be drawn
+        if (playerCards.cards.size == 4) { //if it is the second additional card
+            playerCardPlaceholder = findViewById<ImageView>(R.id.playerCardImageView4) // Get the placeholder for where on the screen it should be drawn
+        } else if (playerCards.cards.size == 5) { //if it is the third additional card
+            playerCardPlaceholder = findViewById<ImageView>(R.id.playerCardImageView5) // Get the placeholder for where on the screen it should be drawn
+        } else { //if it is the sixth addidional card
+            playerCardPlaceholder = findViewById<ImageView>(R.id.playerCardImageView6) // Get the placeholder for where on the screen it should be drawn
         }
-        playerCardPlaceholder.visibility = View.VISIBLE
-        val uriPlayer = "@drawable/".plus(playerCard.imageName)
-        val imageResource = resources.getIdentifier(uriPlayer, null, packageName)
-        playerCardPlaceholder.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResource))
-        updateCardsValue()
+        playerCardPlaceholder.visibility = View.VISIBLE // Make the card visible
+        val uriPlayer = "@drawable/".plus(playerCard.imageName) // get the path to where in the project the file is saved
+        val imageResource = resources.getIdentifier(uriPlayer, null, packageName) // Get the actual image
+        playerCardPlaceholder.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResource)) // Set the image to the placeholder
+        updateCardsValue() // Update the value of cards on the gamingboard
     }
 
-    // THis function shows the dealers initial hidden card
+    // This function shows the dealers initial hidden card
     fun revealDealerCards(){
         //Use the suit and value of card to generate filename to be able to dynamically set image to card
-        var dealerCard = dealerCards.getCard(1)
-        var fileName = dealerCard.toString()
-        dealerCard.imageName = fileName
-        val dealerFirstCard = findViewById<ImageView>(R.id.dealerFirstCard)
+        var dealerCard = dealerCards.getCard(1) // get the second card
+        var fileName = dealerCard.toString() // Get the filename
+        dealerCard.imageName = fileName // Save the filename to the card object
+        val dealerFirstCard = findViewById<ImageView>(R.id.dealerFirstCard) //
         Log.d("!!!", dealerFirstCard.id.toString())
         val uriDealer = "@drawable/".plus(dealerCard.imageName)
         val imageResourceDealer = resources.getIdentifier(uriDealer, null, packageName)
@@ -156,17 +157,18 @@ class GameActivity : AppCompatActivity() {
         updateCardsValue()
         var dealerHandValueTextView = findViewById<TextView>(R.id.dealerValueTextView)
         var dealerHandValue = Integer.parseInt(dealerHandValueTextView.text.toString())
-        while (dealerHandValue < 17){
-            drawDealerCard()
-            dealerHandValue = dealerHandValueTextView.text.toString().toInt()
-            if(dealerHandValue > 21){
-                var resultTextView = findViewById<TextView>(R.id.roundResultTextView)
-                resultTextView.text = "Congratulations you won this round!"
-                resultTextView.visibility = View.VISIBLE
+        while (dealerHandValue < 17){ // check if the dealer has above 17, if nut run loop
+            drawDealerCard() //Draw a new card to the dealer
+            dealerHandValue = dealerHandValueTextView.text.toString().toInt() // Get the value of dealer cards as int
+            if(dealerHandValue > 21){ // if dealers value on hand is above 21, dealer looses
+                var resultTextView = findViewById<TextView>(R.id.roundResultTextView) // Get the result textview
+                resultTextView.text = "Congratulations you won this round!" // Set the text for the resultvire
+                resultTextView.visibility = View.VISIBLE // Show the result textview
             }
         }
-        var drawButton = findViewById<Button>(R.id.drawButton)
+        var drawButton = findViewById<Button>(R.id.drawButton) // Get a reference to the drawBtton
         drawButton.text = "New cards"
+        //Set the clicklistener to reset
         drawButton.setOnClickListener {
             resetForNextRound()
         }
