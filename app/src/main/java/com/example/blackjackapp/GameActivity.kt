@@ -16,6 +16,9 @@ class GameActivity : AppCompatActivity() {
     val playerCards = Deck() // The cards that the player has on hand
     var playerMoney = 0
     var dealerMoney = 0
+    var betPlayer = 0
+    var betDealer = 0
+    var totalBetAmount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +70,36 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
+    /*
+     Handles betting from the player. Takes the value from the chip that the player clicked on
+     and adds it to the total betting amount for this round. Checks if player has enough money
+     Then does the same for the dealer with the same amount. Finally updates the GUI fields
+     with totalBettingAmount and withdraws bet amount from player and dealer money.
+     */
+    fun betValue(valueOnChip : Int){
+        val playerMoneyTextView = findViewById<TextView>(R.id.moneyLeftTextView)
+        //val dealerMoneyTextView = findViewById<TextView>(R.id.dealerMoneyLeftTextView)
+        //val totalBetAmountTextView = findViewById<TextView>(R.id.totalBetAmountTextView)
+        if(playerMoney - valueOnChip >= 0){
+            betPlayer += valueOnChip
+            playerMoney -= valueOnChip
+        }else{
+            betPlayer = playerMoney // If player doesn't have enough money, bet all player money
+        }
+        if(dealerMoney - valueOnChip >= 0){
+            betDealer += valueOnChip
+            dealerMoney -= valueOnChip
+        }else{
+            betDealer = dealerMoney // If dealer doesn't have enough money, bet all dealer money
+        }
+        // Adds player and dealer bet to totalBetAmount
+        totalBetAmount += (betPlayer + betDealer)
 
+        // Updates the GUI with the new amounts.
+        playerMoneyTextView.text = playerMoney.toString()
+        //dealerMoneyTextView.text = dealerMoney.toString()
+        //totalBetAmountTextView.text = totalBetAmount.toString()
+    }
     /*
     Add fragment to view by creating fragment and then initiate a transaction,
     add the fragment(s) that are supposed to be visible on screen to the transaction
