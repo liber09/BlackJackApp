@@ -25,12 +25,15 @@ class Deck {
     fun getCard(index: Int): Card{
         return cards[index]
     }
-    //add a card to the deck
+    /*
+    Add a card to the deck, used when adding card to player and dealer decks
+    and when a round is completed and cards should be returned to the original deck
+     */
     fun addCard(card:Card){
         cards.add(card)
     }
 
-    //Remove a card from the deck at position i
+    //Remove a card from the original deck at position index
     fun removeCard(index:Int){
         cards.removeAt(index)
     }

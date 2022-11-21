@@ -5,15 +5,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import org.w3c.dom.Text
-import java.util.*
-
 
 class GameActivity : AppCompatActivity() {
-    val cards = Deck() // The card deck
+    val gameDeck = Deck() // The card deck
     val dealerCards = Deck() // The cards that the dealer has on hand
     val playerCards = Deck() // The cards that the player has on hand
     var playerMoney = 0
@@ -23,11 +21,11 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        cards.createFullDeck() // Creates the initial card deck
-        cards.shuffleDeck()  // Shuffles the deck
-        addInitialCards()
+        gameDeck.createFullDeck() // Creates the initial card deck
+        gameDeck.shuffleDeck()  // Shuffles the deck
+        addInitialCards() // Gives the player 2 cards and the dealer 2 cards
 
-        //Setup clickhandler for drawbutton. This Button clickEvent changes during the game
+        //Setup clickHandler for drawButton. This Button clickEvent changes during the game
         val drawButtonClick = findViewById<Button>(R.id.drawButton)
         drawButtonClick.setOnClickListener() {
             setUpGame()
@@ -36,6 +34,36 @@ class GameActivity : AppCompatActivity() {
         val stayButtonClick = findViewById<Button>(R.id.stayButton)
         stayButtonClick.setOnClickListener {
             revealDealerCards()
+        }
+        /*
+         Buttonclick that doubles the placed bet. Ex. player and dealer has placed 300
+         each = 600,click on double makes you bet 1200 more.
+         */
+        val doubleButtonClick = findViewById<Button>(R.id.doubleButton)
+        doubleButtonClick.setOnClickListener {
+            // doubleBet()
+        }
+
+        // The chipButtons that handles betting and calls on function betValue that takes in an int value.
+        val betOneButtonClick = findViewById<ImageButton>(R.id.betOneButton)
+        betOneButtonClick.setOnClickListener {
+            // betValue(1)
+        }
+        val betFiveButtonClick = findViewById<ImageButton>(R.id.betFiveButton)
+        betFiveButtonClick.setOnClickListener {
+            // betValue(5)
+        }
+        val betTenButtonClick = findViewById<ImageButton>(R.id.betTenButton)
+        betTenButtonClick.setOnClickListener {
+            // betValue(10)
+        }
+        val betTwentyFiveButtonClick = findViewById<ImageButton>(R.id.betTwentyFiveButton)
+        betTwentyFiveButtonClick.setOnClickListener {
+            // betValue(25)
+        }
+        val betOneHundredButtonClick = findViewById<ImageButton>(R.id.betOneHundredButton)
+        betOneHundredButtonClick.setOnClickListener {
+            // betValue(100)
         }
     }
 
@@ -60,10 +88,10 @@ class GameActivity : AppCompatActivity() {
 
     // Gives both players their first two cards and their initial money
     fun setUpGame() {
-        playerCards.drawCard(cards)
-        dealerCards.drawCard(cards)
-        playerCards.drawCard(cards)
-        dealerCards.drawCard(cards)
+        playerCards.drawCard(gameDeck)
+        dealerCards.drawCard(gameDeck)
+        playerCards.drawCard(gameDeck)
+        dealerCards.drawCard(gameDeck)
         playerMoney = 1500
         dealerMoney = 1500
         var playerMoneyTextView = findViewById<TextView>(R.id.moneyLeftTextView)
@@ -74,7 +102,6 @@ class GameActivity : AppCompatActivity() {
         var fileName = dealerCard.toString()
         dealerCard.imageName = fileName
         val dealerSecondCard = findViewById<ImageView>(R.id.dealerSecondCard)
-        Log.d("!!!", dealerSecondCard.id.toString())
         val uriDealer = "@drawable/".plus(dealerCard.imageName)
         val imageResourceDealer = resources.getIdentifier(uriDealer, null, packageName)
         dealerSecondCard.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResourceDealer))
@@ -83,7 +110,6 @@ class GameActivity : AppCompatActivity() {
         fileName = playerCardOne.toString()
         playerCardOne.imageName = fileName
         val playerFirstCardPlaceholder = findViewById<ImageView>(R.id.playerFirstCardImageView)
-
         val uri1Player = "@drawable/".plus(playerCardOne.imageName)
         val imageResource1Player = resources.getIdentifier(uri1Player, null, packageName)
         playerFirstCardPlaceholder.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResource1Player))
@@ -110,11 +136,11 @@ class GameActivity : AppCompatActivity() {
         val dealerScore = findViewById<TextView>(R.id.dealerValueTextView)
         playerScore.text = playerCards.cardsValue().toString()
         dealerScore.text = dealerCards.cardsValue().toString()
-        checkIfPlayerLost()
+        checkIfPlayerLostTheGame()
     }
 
     //Check if the player lost the round, if so print message to screen
-    fun checkIfPlayerLost(){
+    fun checkIfPlayerLostTheGame(){
         val playerScore = findViewById<TextView>(R.id.playerValueTextView)
         if (playerScore.text.toString().toInt() >21){
             val resultTextView = findViewById<TextView>(R.id.roundResultTextView)
@@ -124,7 +150,7 @@ class GameActivity : AppCompatActivity() {
     }
     //Draws the additional player cards to the board
     fun drawPlayerCard() {
-        playerCards.drawCard(cards) // Draw a ned card from the deck
+        playerCards.drawCard(gameDeck) // Draw a new card from the deck
         var playerCard = playerCards.getCard(playerCards.cards.size - 1) // Get the latest card from the players stack of cards
         val fileName = playerCard.toString() // Get the filename
         playerCard.imageName = fileName // Save the filename to the playerCard object
@@ -146,7 +172,7 @@ class GameActivity : AppCompatActivity() {
     // This function shows the dealers initial hidden card
     fun revealDealerCards(){
         //Use the suit and value of card to generate filename to be able to dynamically set image to card
-        var dealerCard = dealerCards.getCard(1) // get the second card
+        var dealerCard = dealerCards.getCard(0) // get the second card
         var fileName = dealerCard.toString() // Get the filename
         dealerCard.imageName = fileName // Save the filename to the card object
         val dealerFirstCard = findViewById<ImageView>(R.id.dealerFirstCard) //
@@ -167,7 +193,7 @@ class GameActivity : AppCompatActivity() {
             }
         }
         var drawButton = findViewById<Button>(R.id.drawButton) // Get a reference to the drawBtton
-        drawButton.text = "New cards"
+        drawButton.text = "Next round"
         //Set the clicklistener to reset
         drawButton.setOnClickListener {
             resetForNextRound()
@@ -175,7 +201,7 @@ class GameActivity : AppCompatActivity() {
     }
     //Dealer draws a new card
     fun drawDealerCard(){
-        dealerCards.drawCard(cards) // Dealer draws the card
+        dealerCards.drawCard(gameDeck) // Dealer draws the card
         // Get the card and apply image to it
         var dealerCard = dealerCards.getCard(dealerCards.cards.size - 1)
         val fileName = dealerCard.toString()
@@ -197,8 +223,8 @@ class GameActivity : AppCompatActivity() {
 
     //Reset the gameround and prepare for next round
     fun resetForNextRound(){
-        dealerCards.moveAllToStartDeck(cards) //Move the cards back to the deck
-        playerCards.moveAllToStartDeck(cards) //Move the cards back to the deck
+        dealerCards.moveAllToStartDeck(gameDeck) //Move the cards back to the deck
+        playerCards.moveAllToStartDeck(gameDeck) //Move the cards back to the deck
         var playerScore = findViewById<TextView>(R.id.playerValueTextView)
         playerScore.text = "0" //Set player score to 0
         var dealerScore = findViewById<TextView>(R.id.dealerValueTextView)
