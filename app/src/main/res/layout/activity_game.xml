@@ -91,13 +91,13 @@
         android:contentDescription="Draw button"
         android:fontFamily="@font/itim"
         android:textAlignment="center"
-        android:textColor="#000000"
+        android:textColor="#000001"
         android:textStyle="bold"
         app:cornerRadius="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/doubleButton"
-        tools:text="Draw" />
+        tools:text="Start" />
 
     <ImageButton
         android:id="@+id/betTenButton"
@@ -116,7 +116,7 @@
         android:layout_width="48dp"
         android:layout_height="49dp"
         android:layout_marginStart="28dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="16dp"
         android:contentDescription="Bet one"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/stayButton"
@@ -165,7 +165,6 @@
         android:id="@+id/moneyLeftTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
         android:contentDescription="Money left"
         android:fontFamily="@font/itim"
         android:text="$ 1500"
@@ -205,6 +204,7 @@
         android:layout_height="wrap_content"
         android:contentDescription="Dealer current cards value"
         android:text="21"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/dealerStarImageView"
         app:layout_constraintEnd_toEndOf="@+id/dealerStarImageView"
         app:layout_constraintStart_toStartOf="@+id/dealerStarImageView"
@@ -218,6 +218,7 @@
         android:layout_marginEnd="37dp"
         android:contentDescription="Your current cards value"
         android:text="21"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/playerStarImageView"
         app:layout_constraintEnd_toEndOf="@+id/playerStarImageView"
         app:layout_constraintHorizontal_bias="1.0"
