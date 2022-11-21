@@ -100,6 +100,30 @@ class GameActivity : AppCompatActivity() {
         //dealerMoneyTextView.text = dealerMoney.toString()
         //totalBetAmountTextView.text = totalBetAmount.toString()
     }
+
+    /*
+        Doubles the already made bets. Checks if player and dealer has enough money and
+        withdraws the double amount from both player and dealer. Updates the GUI with new
+        amounts.
+     */
+    fun doubleBet(){
+        val playerMoneyTextView = findViewById<TextView>(R.id.moneyLeftTextView)
+        //val dealerMoneyTextView = findViewById<TextView>(R.id.dealerMoneyLeftTextView)
+        //val totalBetAmountTextView = findViewById<TextView>(R.id.totalBetAmountTextView)
+        if(playerMoney - (totalBetAmount*2) >= 0){
+            playerMoney -= (totalBetAmount*2)
+            playerMoneyTextView.text = playerMoney.toString()
+        }else{
+            playerMoneyTextView.text = "0"
+        }
+        if(dealerMoney - (totalBetAmount*2) >= 0){
+            dealerMoney -= (totalBetAmount*2)
+            //dealerMoneyTextView.text = dealerMoney.toString()
+        }
+        totalBetAmount += (totalBetAmount*2)
+        //totalBetAmountTextView.text = totalBetAmount.toString()
+    }
+
     /*
     Add fragment to view by creating fragment and then initiate a transaction,
     add the fragment(s) that are supposed to be visible on screen to the transaction
