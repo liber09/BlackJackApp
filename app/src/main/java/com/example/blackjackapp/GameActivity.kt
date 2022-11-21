@@ -19,6 +19,7 @@ class GameActivity : AppCompatActivity() {
     var betPlayer = 0
     var betDealer = 0
     var totalBetAmount = 0
+    var playerStayed = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +40,7 @@ class GameActivity : AppCompatActivity() {
             revealDealerCards()
         }
         /*
-         Buttonclick that doubles the placed bet. Ex. player and dealer has placed 300
+         ButtonClick that doubles the placed bet. Ex. player and dealer has placed 300
          each = 600,click on double makes you bet 1200 more.
          */
         val doubleButtonClick = findViewById<Button>(R.id.doubleButton)
@@ -186,12 +187,19 @@ class GameActivity : AppCompatActivity() {
             drawPlayerCard()
         }
     }
+
     // Update the value of both player dealer cards
     fun updateCardsValue(){
         val playerScore = findViewById<TextView>(R.id.playerValueTextView)  // Get a reference to the players score
         val dealerScore = findViewById<TextView>(R.id.dealerValueTextView)
         playerScore.text = playerCards.cardsValue().toString()
-        dealerScore.text = dealerCards.cardsValue().toString()
+        if(!playerStayed){
+            dealerScore.text = dealerCards.getCard(1).value.getValue().toString()
+        }else{
+            dealerScore.text = dealerCards.cardsValue().toString()
+        }
+
+
         checkIfPlayerLostTheGame()
     }
 
@@ -204,6 +212,7 @@ class GameActivity : AppCompatActivity() {
             resultTextView.visibility = View.VISIBLE
         }
     }
+
     //Draws the additional player cards to the board
     fun drawPlayerCard() {
         playerCards.drawCard(gameDeck) // Draw a new card from the deck
@@ -227,6 +236,7 @@ class GameActivity : AppCompatActivity() {
 
     // This function shows the dealers initial hidden card
     fun revealDealerCards(){
+        playerStayed = true
         //Use the suit and value of card to generate filename to be able to dynamically set image to card
         var dealerCard = dealerCards.getCard(0) // get the second card
         var fileName = dealerCard.toString() // Get the filename
@@ -255,6 +265,7 @@ class GameActivity : AppCompatActivity() {
             resetForNextRound()
         }
     }
+
     //Dealer draws a new card
     fun drawDealerCard(){
         dealerCards.drawCard(gameDeck) // Dealer draws the card
