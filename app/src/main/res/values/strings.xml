@@ -9,4 +9,6 @@
     <string name="PlayAgain">PLAY AGAIN</string>
     <string name="TryAgain">TRY AGAIN</string>
     <string name="YouLost">YOU LOST</string>
+    <string name="DealerWonRound">Dealer won this round!</string>
+    <string name="Congratulations">Congratulations you won this round!</string>
 </resources>

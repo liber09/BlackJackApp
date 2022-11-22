@@ -10,4 +10,6 @@
     <string name="PlayAgain">SPELA IGEN</string>
     <string name="TryAgain">FÖRSÖK IGEN</string>
     <string name="YouLost">DU FÖRLORADE</string>
+    <string name="DealerWonRound">Dealern vann den här omgången</string>
+    <string name="Congratulations">Grattis! Du vann den här omgången</string>
 </resources>

@@ -208,7 +208,7 @@ class GameActivity : AppCompatActivity() {
         val playerScore = findViewById<TextView>(R.id.playerValueTextView)
         if (playerScore.text.toString().toInt() >21){
             val resultTextView = findViewById<TextView>(R.id.roundResultTextView)
-            resultTextView.text = "Dealer won this round!"
+            resultTextView.text = getString(R.string.DealerWonRound)
             resultTextView.visibility = View.VISIBLE
         }
     }
@@ -254,7 +254,7 @@ class GameActivity : AppCompatActivity() {
             dealerHandValue = dealerHandValueTextView.text.toString().toInt() // Get the value of dealer cards as int
             if(dealerHandValue > 21){ // if dealers value on hand is above 21, dealer looses
                 var resultTextView = findViewById<TextView>(R.id.roundResultTextView) // Get the result textview
-                resultTextView.text = "Congratulations you won this round!" // Set the text for the resultvire
+                resultTextView.text = getString(R.string.Congratulations) // Set the text for the resultvire
                 resultTextView.visibility = View.VISIBLE // Show the result textview
             }
         }
