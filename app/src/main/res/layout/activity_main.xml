@@ -27,7 +27,7 @@
         android:layout_marginTop="262dp"
         android:backgroundTint="#D4AF37"
         android:fontFamily="@font/hanalei_fill"
-        android:text="Play"
+        android:text="@string/play"
         android:textColor="#795548"
         android:textSize="48sp"
         app:cornerRadius="30sp"

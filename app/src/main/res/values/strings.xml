@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">BlackJackApp</string>
+    <string name="play">Play</string>
+    <string name="Draw">Draw</string>
+    <string name="NextRound">Next round</string>
+    <string name="Start">Start</string>
+    <string name="Double">Double</string>
+    <string name="Stay">Stay</string>
+    <string name="PlayAgain">PLAY AGAIN</string>
+    <string name="TryAgain">TRY AGAIN</string>
 </resources>

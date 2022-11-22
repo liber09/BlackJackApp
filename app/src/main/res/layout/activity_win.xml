@@ -25,7 +25,7 @@
         android:backgroundTint="#D4AF37"
         android:contentDescription="Play again button"
         android:fontFamily="@font/bungee_shade"
-        android:text="PLAY AGAIN"
+        android:text="@string/PlayAgain"
         android:textColor="#000000"
         android:textSize="25sp"
         app:cornerRadius="30sp"

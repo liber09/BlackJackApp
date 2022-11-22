@@ -58,7 +58,7 @@
         android:backgroundTint="#7C0B0B"
         android:contentDescription="stay button"
         android:fontFamily="@font/itim"
-        android:text="Stay"
+        android:text="@string/Stay"
         android:textAlignment="center"
         android:textColor="#0097A7"
         android:textStyle="bold"
@@ -78,7 +78,7 @@
         android:contentDescription="Double button"
         android:fontFamily="@font/itim"
         android:onClick="addInitialCards"
-        android:text="Double"
+        android:text="@string/Double"
         android:textAlignment="center"
         android:textColor="#26A69A"
         android:textStyle="bold"
@@ -104,7 +104,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/doubleButton"
-        tools:text="Start" />
+        tools:text="@string/Start" />
 
     <ImageButton
         android:id="@+id/betTenButton"

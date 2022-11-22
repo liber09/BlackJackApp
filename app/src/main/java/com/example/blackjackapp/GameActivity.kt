@@ -45,17 +45,17 @@ class GameActivity : AppCompatActivity() {
          */
         val doubleButtonClick = findViewById<Button>(R.id.doubleButton)
         doubleButtonClick.setOnClickListener {
-            // doubleBet()
+             doubleBet()
         }
 
         // The chipButtons that handles betting and calls on function betValue that takes in an int value.
         val betOneButtonClick = findViewById<ImageButton>(R.id.betOneButton)
         betOneButtonClick.setOnClickListener {
-            // betValue(1)
+             betValue(1)
         }
         val betFiveButtonClick = findViewById<ImageButton>(R.id.betFiveButton)
         betFiveButtonClick.setOnClickListener {
-            // betValue(5)
+             betValue(5)
         }
         val betTenButtonClick = findViewById<ImageButton>(R.id.betTenButton)
         betTenButtonClick.setOnClickListener {
@@ -63,11 +63,11 @@ class GameActivity : AppCompatActivity() {
         }
         val betTwentyFiveButtonClick = findViewById<ImageButton>(R.id.betTwentyFiveButton)
         betTwentyFiveButtonClick.setOnClickListener {
-            // betValue(25)
+             betValue(25)
         }
         val betOneHundredButtonClick = findViewById<ImageButton>(R.id.betOneHundredButton)
         betOneHundredButtonClick.setOnClickListener {
-            // betValue(100)
+             betValue(100)
         }
     }
 
@@ -182,7 +182,7 @@ class GameActivity : AppCompatActivity() {
         updateCardsValue()
 
         val drawButton = findViewById<Button>(R.id.drawButton)
-        drawButton.text = "Draw"
+        drawButton.text = getString(R.string.Draw)
         drawButton.setOnClickListener {
             drawPlayerCard()
         }
@@ -259,7 +259,7 @@ class GameActivity : AppCompatActivity() {
             }
         }
         var drawButton = findViewById<Button>(R.id.drawButton) // Get a reference to the drawBtton
-        drawButton.text = "Next round"
+        drawButton.text = getString(R.string.NextRound)
         //Set the clicklistener to reset
         drawButton.setOnClickListener {
             resetForNextRound()
@@ -298,7 +298,7 @@ class GameActivity : AppCompatActivity() {
         playerScore.text = "0" //Set dealer score to 0
         //Change text and function of draw button to start
         var drawButton = findViewById<Button>(R.id.drawButton)
-        drawButton.text = "Start"
+        drawButton.text = getString(R.string.Start)
         drawButton.setOnClickListener {
             setUpGame()
         }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BlackJackApp</string>
+    <string name="play">Spela</string>
+    <string name="Draw">Kort</string>
+    <string name="NextRound">Ny omgång</string>
+    <string name="Start">Start</string>
+    <string name="Double">Dubbla</string>
+    <string name="Stay">Stanna</string>
+    <string name="PlayAgain">SPELA IGEN</string>
+    <string name="TryAgain">FÖRSÖK IGEN</string>
+</resources>
