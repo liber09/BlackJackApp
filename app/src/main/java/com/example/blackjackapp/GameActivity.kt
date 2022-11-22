@@ -1,5 +1,6 @@
 package com.example.blackjackapp
 
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
@@ -15,8 +16,8 @@ class GameActivity : AppCompatActivity() {
     val gameDeck = Deck() // The card deck
     val dealerCards = Deck() // The cards that the dealer has on hand
     val playerCards = Deck() // The cards that the player has on hand
-    var playerMoney = 0
-    var dealerMoney = 0
+    var playerMoney = 1500
+    var dealerMoney = 1500
     var betPlayer = 0
     var betDealer = 0
     var totalBetAmount = 0
@@ -152,8 +153,6 @@ class GameActivity : AppCompatActivity() {
         dealerCards.drawCard(gameDeck)
         playerCards.drawCard(gameDeck)
         dealerCards.drawCard(gameDeck)
-        playerMoney = 1500
-        dealerMoney = 1500
         var playerMoneyTextView = findViewById<TextView>(R.id.moneyLeftTextView)
         playerMoneyTextView.text = playerMoney.toString()
 
@@ -162,9 +161,14 @@ class GameActivity : AppCompatActivity() {
         var fileName = dealerCard.toString()
         dealerCard.imageName = fileName
         val dealerSecondCard = findViewById<ImageView>(R.id.dealerSecondCard)
-        val uriDealer = "@drawable/".plus(dealerCard.imageName)
-        val imageResourceDealer = resources.getIdentifier(uriDealer, null, packageName)
+        var uriDealer = "@drawable/".plus(dealerCard.imageName)
+        var imageResourceDealer = resources.getIdentifier(uriDealer, null, packageName)
         dealerSecondCard.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResourceDealer))
+
+        val dealerFirstCardPlaceholder = findViewById<ImageView>(R.id.dealerFirstCard)
+        uriDealer = "@drawable/".plus("back")
+        imageResourceDealer = resources.getIdentifier(uriDealer, null, packageName)
+        dealerFirstCardPlaceholder.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResourceDealer))
 
         var playerCardOne = playerCards.getCard(0)
         fileName = playerCardOne.toString()
@@ -262,6 +266,7 @@ class GameActivity : AppCompatActivity() {
             }
         }
         checkWinner() //Check who won
+        checkGameOver() //Check if player or dealer out of money
         var drawButton = findViewById<Button>(R.id.drawButton) // Get a reference to the drawBtton
         drawButton.text = getString(R.string.NextRound)
         //Set the clickLKistener to reset
@@ -280,25 +285,21 @@ class GameActivity : AppCompatActivity() {
             roundResultTextView.text = getString(R.string.TieRound)
             dealerMoney += (totalBetAmount/2)
             playerMoney += (totalBetAmount/2)
-        }
         //Player was fat, dealer wins
-        if (playerScore > 22){
+        }else if (playerScore > 21){
             roundResultTextView.text = getString(R.string.DealerWonRound)
             dealerWon = true
             dealerMoney += totalBetAmount
-        }
         //Dealer was fat, player wins
-        if (dealerScore > 22){
+        }else if (dealerScore > 21){
             roundResultTextView.text = getString(R.string.Congratulations)
             playerWon = true
             playerMoney += totalBetAmount
-        }
         //Player has higer and wins
-        if (playerScore < 22 && playerScore > dealerScore){
+        }else if (playerScore < 22 && playerScore > dealerScore){
             roundResultTextView.text = getString(R.string.Congratulations)
             playerWon = true
             playerMoney += totalBetAmount
-
         //dealer has higher and wins
         }else{
             roundResultTextView.text = getString(R.string.DealerWonRound)
@@ -342,7 +343,7 @@ class GameActivity : AppCompatActivity() {
         var drawButton = findViewById<Button>(R.id.drawButton)
         drawButton.text = getString(R.string.Start)
         drawButton.setOnClickListener {
-            nextRound()
+            setUpGame()
         }
         resetGUIComponents()
 
@@ -384,7 +385,15 @@ class GameActivity : AppCompatActivity() {
         roundResultTextView.visibility = View.INVISIBLE
         val totalBetAmountTextView = findViewById<TextView>(R.id.totalBetAmountTextView)
         totalBetAmountTextView.text = getString(R.string.TotalBet)
-
+    }
+    fun checkGameOver(){
+        if(playerMoney == 0){
+            val lostScreen = Intent(this,LostActivity::class.java) //Get a reference to the game lost screen
+            startActivity(lostScreen)
+        }else if(dealerMoney == 0){
+            val winScreen = Intent(this,WinActivity::class.java) //Get a reference to the game lost screen
+            startActivity(winScreen)
+        }
 
     }
 }

@@ -26,7 +26,7 @@
         android:text="@string/YouLost"
         android:textColor="#FF0000"
         android:textSize="46sp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/playAgainButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,13 +34,13 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/playAgainButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:backgroundTint="#D4AF37"
         android:fontFamily="@font/bungee_shade"
-        android:text="TRY AGAIN"
+        android:text="@string/TryAgain"
         android:textColor="#000000"
         android:textSize="25sp"
         app:cornerRadius="30sp"
