@@ -12,4 +12,11 @@
     <string name="YouLost">DU FÖRLORADE</string>
     <string name="DealerWonRound">Dealern vann den här omgången</string>
     <string name="Congratulations">Grattis! Du vann den här omgången</string>
+    <string name="TotalBet">"Totala insatser: "</string>
+    <string name="BetOne">Satsa en</string>
+    <string name="BetFive">Satsa fem</string>
+    <string name="BetTwentyFive">Satsa tjugofem</string>
+    <string name="BetTen">Satsa tio</string>
+    <string name="BetOneHundred">Satsa etthundra</string>
+    <string name="TieRound">Denna omgång slutade oavgjort</string>
 </resources>

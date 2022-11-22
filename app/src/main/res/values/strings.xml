@@ -11,4 +11,11 @@
     <string name="YouLost">YOU LOST</string>
     <string name="DealerWonRound">Dealer won this round!</string>
     <string name="Congratulations">Congratulations you won this round!</string>
+    <string name="TotalBet">Total bet:</string>
+    <string name="BetOne">Bet one</string>
+    <string name="BetFive">Bet five</string>
+    <string name="BetTwentyFive">Bet twentyfive</string>
+    <string name="BetTen">Bet ten</string>
+    <string name="BetOneHundred">Bet onehundred</string>
+    <string name="TieRound">This round was a tie</string>
 </resources>

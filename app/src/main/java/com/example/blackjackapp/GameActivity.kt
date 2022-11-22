@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import org.w3c.dom.Text
 
 class GameActivity : AppCompatActivity() {
     val gameDeck = Deck() // The card deck
@@ -20,6 +21,8 @@ class GameActivity : AppCompatActivity() {
     var betDealer = 0
     var totalBetAmount = 0
     var playerStayed = false
+    var playerWon = false
+    var dealerWon = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +62,7 @@ class GameActivity : AppCompatActivity() {
         }
         val betTenButtonClick = findViewById<ImageButton>(R.id.betTenButton)
         betTenButtonClick.setOnClickListener {
-            // betValue(10)
+             betValue(10)
         }
         val betTwentyFiveButtonClick = findViewById<ImageButton>(R.id.betTwentyFiveButton)
         betTwentyFiveButtonClick.setOnClickListener {
@@ -80,7 +83,7 @@ class GameActivity : AppCompatActivity() {
     fun betValue(valueOnChip : Int){
         val playerMoneyTextView = findViewById<TextView>(R.id.moneyLeftTextView)
         //val dealerMoneyTextView = findViewById<TextView>(R.id.dealerMoneyLeftTextView)
-        //val totalBetAmountTextView = findViewById<TextView>(R.id.totalBetAmountTextView)
+        val totalBetAmountTextView = findViewById<TextView>(R.id.totalBetAmountTextView)
         if(playerMoney - valueOnChip >= 0){
             betPlayer += valueOnChip
             playerMoney -= valueOnChip
@@ -99,7 +102,7 @@ class GameActivity : AppCompatActivity() {
         // Updates the GUI with the new amounts.
         playerMoneyTextView.text = playerMoney.toString()
         //dealerMoneyTextView.text = dealerMoney.toString()
-        //totalBetAmountTextView.text = totalBetAmount.toString()
+        totalBetAmountTextView.text = totalBetAmount.toString()
     }
 
     /*
@@ -110,7 +113,7 @@ class GameActivity : AppCompatActivity() {
     fun doubleBet(){
         val playerMoneyTextView = findViewById<TextView>(R.id.moneyLeftTextView)
         //val dealerMoneyTextView = findViewById<TextView>(R.id.dealerMoneyLeftTextView)
-        //val totalBetAmountTextView = findViewById<TextView>(R.id.totalBetAmountTextView)
+        val totalBetAmountTextView = findViewById<TextView>(R.id.totalBetAmountTextView)
         if(playerMoney - (totalBetAmount*2) >= 0){
             playerMoney -= (totalBetAmount*2)
             playerMoneyTextView.text = playerMoney.toString()
@@ -122,7 +125,7 @@ class GameActivity : AppCompatActivity() {
             //dealerMoneyTextView.text = dealerMoney.toString()
         }
         totalBetAmount += (totalBetAmount*2)
-        //totalBetAmountTextView.text = totalBetAmount.toString()
+        totalBetAmountTextView.text = totalBetAmount.toString()
     }
 
     /*
@@ -258,14 +261,53 @@ class GameActivity : AppCompatActivity() {
                 resultTextView.visibility = View.VISIBLE // Show the result textview
             }
         }
+        checkWinner() //Check who won
         var drawButton = findViewById<Button>(R.id.drawButton) // Get a reference to the drawBtton
         drawButton.text = getString(R.string.NextRound)
-        //Set the clicklistener to reset
+        //Set the clickLKistener to reset
         drawButton.setOnClickListener {
             resetForNextRound()
         }
     }
 
+    //Check who won this round
+    fun checkWinner(){
+        val dealerScore = findViewById<TextView>(R.id.dealerValueTextView).text.toString().toInt()
+        val playerScore = findViewById<TextView>(R.id.playerValueTextView).text.toString().toInt()
+        val roundResultTextView = findViewById<TextView>(R.id.roundResultTextView)
+        //This round was tie
+        if (playerScore == dealerScore){
+            roundResultTextView.text = getString(R.string.TieRound)
+            dealerMoney += (totalBetAmount/2)
+            playerMoney += (totalBetAmount/2)
+        }
+        //Player was fat, dealer wins
+        if (playerScore > 22){
+            roundResultTextView.text = getString(R.string.DealerWonRound)
+            dealerWon = true
+            dealerMoney += totalBetAmount
+        }
+        //Dealer was fat, player wins
+        if (dealerScore > 22){
+            roundResultTextView.text = getString(R.string.Congratulations)
+            playerWon = true
+            playerMoney += totalBetAmount
+        }
+        //Player has higer and wins
+        if (playerScore < 22 && playerScore > dealerScore){
+            roundResultTextView.text = getString(R.string.Congratulations)
+            playerWon = true
+            playerMoney += totalBetAmount
+
+        //dealer has higher and wins
+        }else{
+            roundResultTextView.text = getString(R.string.DealerWonRound)
+            dealerWon = true
+            dealerMoney += totalBetAmount
+        }
+        roundResultTextView.visibility = View.VISIBLE
+
+    }
     //Dealer draws a new card
     fun drawDealerCard(){
         dealerCards.drawCard(gameDeck) // Dealer draws the card
@@ -340,6 +382,9 @@ class GameActivity : AppCompatActivity() {
         dealerScore.text = "0"
         val roundResultTextView = findViewById<TextView>(R.id.roundResultTextView)
         roundResultTextView.visibility = View.INVISIBLE
+        val totalBetAmountTextView = findViewById<TextView>(R.id.totalBetAmountTextView)
+        totalBetAmountTextView.text = getString(R.string.TotalBet)
+
 
     }
 }
