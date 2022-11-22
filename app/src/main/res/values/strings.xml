@@ -8,4 +8,5 @@
     <string name="Stay">Stay</string>
     <string name="PlayAgain">PLAY AGAIN</string>
     <string name="TryAgain">TRY AGAIN</string>
+    <string name="YouLost">YOU LOST</string>
 </resources>

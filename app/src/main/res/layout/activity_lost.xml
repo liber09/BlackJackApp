@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:fontFamily="@font/bungee_shade"
-        android:text="YOU LOOSE"
+        android:text="@string/YouLost"
         android:textColor="#FF0000"
         android:textSize="46sp"
         app:layout_constraintBottom_toTopOf="@+id/button"

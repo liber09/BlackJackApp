@@ -9,4 +9,5 @@
     <string name="Stay">Stanna</string>
     <string name="PlayAgain">SPELA IGEN</string>
     <string name="TryAgain">FÖRSÖK IGEN</string>
+    <string name="YouLost">DU FÖRLORADE</string>
 </resources>

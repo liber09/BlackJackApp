@@ -300,7 +300,46 @@ class GameActivity : AppCompatActivity() {
         var drawButton = findViewById<Button>(R.id.drawButton)
         drawButton.text = getString(R.string.Start)
         drawButton.setOnClickListener {
-            setUpGame()
+            nextRound()
         }
+        resetGUIComponents()
+
+    }
+
+    fun nextRound() {
+
+    }
+    fun resetGUIComponents(){
+        val playerCard1 = findViewById<ImageView>(R.id.playerFirstCardImageView)
+        val playerCard2 = findViewById<ImageView>(R.id.playerSecondCardImageView)
+        val playerCard3 = findViewById<ImageView>(R.id.playerCardImageView3)
+        val playerCard4 = findViewById<ImageView>(R.id.playerCardImageView4)
+        val playerCard5 = findViewById<ImageView>(R.id.playerCardImageView5)
+        val playerCard6 = findViewById<ImageView>(R.id.playerCardImageView6)
+        playerCard1.setImageDrawable(null)
+        playerCard2.setImageDrawable(null)
+        playerCard3.setImageDrawable(null)
+        playerCard4.setImageDrawable(null)
+        playerCard5.setImageDrawable(null)
+        playerCard6.setImageDrawable(null)
+        val DealerCard1 = findViewById<ImageView>(R.id.dealerFirstCard)
+        val DealerCard2 = findViewById<ImageView>(R.id.dealerSecondCard)
+        val DealerCard3 = findViewById<ImageView>(R.id.newDealerCard3)
+        val DealerCard4 = findViewById<ImageView>(R.id.newDealerCard4)
+        val DealerCard5 = findViewById<ImageView>(R.id.newDealerCard5)
+        val DealerCard6 = findViewById<ImageView>(R.id.newDealerCard6)
+        DealerCard1.setImageDrawable(null)
+        DealerCard2.setImageDrawable(null)
+        DealerCard3.setImageDrawable(null)
+        DealerCard4.setImageDrawable(null)
+        DealerCard5.setImageDrawable(null)
+        DealerCard6.setImageDrawable(null)
+        val playerScore = findViewById<TextView>(R.id.playerValueTextView)
+        val dealerScore = findViewById<TextView>(R.id.dealerValueTextView)
+        playerScore.text = "0"
+        dealerScore.text = "0"
+        val roundResultTextView = findViewById<TextView>(R.id.roundResultTextView)
+        roundResultTextView.visibility = View.INVISIBLE
+
     }
 }
