@@ -86,13 +86,13 @@ class GameActivity : AppCompatActivity() {
         //val dealerMoneyTextView = findViewById<TextView>(R.id.dealerMoneyLeftTextView)
         val totalBetAmountTextView = findViewById<TextView>(R.id.totalBetAmountTextView)
         if(playerMoney - valueOnChip >= 0){
-            betPlayer += valueOnChip
+            betPlayer = valueOnChip
             playerMoney -= valueOnChip
         }else{
             betPlayer = playerMoney // If player doesn't have enough money, bet all player money
         }
         if(dealerMoney - valueOnChip >= 0){
-            betDealer += valueOnChip
+            betDealer = valueOnChip
             dealerMoney -= valueOnChip
         }else{
             betDealer = dealerMoney // If dealer doesn't have enough money, bet all dealer money
@@ -103,7 +103,7 @@ class GameActivity : AppCompatActivity() {
         // Updates the GUI with the new amounts.
         playerMoneyTextView.text = playerMoney.toString()
         //dealerMoneyTextView.text = dealerMoney.toString()
-        totalBetAmountTextView.text = totalBetAmount.toString()
+        totalBetAmountTextView.text = getString(R.string.TotalBet).plus(" ").plus(totalBetAmount.toString())
     }
 
     /*
@@ -337,6 +337,7 @@ class GameActivity : AppCompatActivity() {
         playerCards.moveAllToStartDeck(gameDeck) //Move the cards back to the deck
         var playerScore = findViewById<TextView>(R.id.playerValueTextView)
         playerScore.text = "0" //Set player score to 0
+        totalBetAmount = 0; //Reset bet amount
         var dealerScore = findViewById<TextView>(R.id.dealerValueTextView)
         playerScore.text = "0" //Set dealer score to 0
         //Change text and function of draw button to start
