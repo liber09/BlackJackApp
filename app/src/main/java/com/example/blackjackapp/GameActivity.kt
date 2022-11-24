@@ -193,6 +193,11 @@ class GameActivity : AppCompatActivity() {
         drawButton.setOnClickListener {
             drawPlayerCard()
         }
+        // Enable stay and double buttons when game is started
+        val doubleButton = findViewById<Button>(R.id.doubleButton)
+        doubleButton.isEnabled = true
+        val stayButton = findViewById<Button>(R.id.stayButton)
+        stayButton.isEnabled = true
     }
 
     // Update the value of both player dealer cards
@@ -386,6 +391,12 @@ class GameActivity : AppCompatActivity() {
         roundResultTextView.visibility = View.INVISIBLE
         val totalBetAmountTextView = findViewById<TextView>(R.id.totalBetAmountTextView)
         totalBetAmountTextView.text = getString(R.string.TotalBet)
+
+        // disable stay and double buttons when game is finished
+        val doubleButton = findViewById<Button>(R.id.doubleButton)
+        doubleButton.isEnabled = false
+        val stayButton = findViewById<Button>(R.id.stayButton)
+        stayButton.isEnabled = false
     }
     fun checkGameOver(){
         if(playerMoney == 0){
