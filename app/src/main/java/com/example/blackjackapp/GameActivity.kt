@@ -112,21 +112,26 @@ class GameActivity : AppCompatActivity() {
         amounts.
      */
     fun doubleBet(){
-        val playerMoneyTextView = findViewById<TextView>(R.id.moneyLeftTextView)
-        //val dealerMoneyTextView = findViewById<TextView>(R.id.dealerMoneyLeftTextView)
-        val totalBetAmountTextView = findViewById<TextView>(R.id.totalBetAmountTextView)
-        if(playerMoney - (totalBetAmount*2) >= 0){
-            playerMoney -= (totalBetAmount*2)
-            playerMoneyTextView.text = playerMoney.toString()
-        }else{
-            playerMoneyTextView.text = "0"
+        //We can only double bet if there is money in the pot already
+        if (totalBetAmount > 0){
+            val totalBetAmountTextView = findViewById<TextView>(R.id.totalBetAmountTextView)
+            val playerMoneyTextView = findViewById<TextView>(R.id.moneyLeftTextView)
+            //val dealerMoneyTextView = findViewById<TextView>(R.id.dealerMoneyLeftTextView)
+            //Double the money and remove money from the player
+            if(playerMoney - (totalBetAmount*2) >= 0){
+                playerMoney -= (totalBetAmount*2)
+                playerMoneyTextView.text = playerMoney.toString()
+            }else{
+                playerMoneyTextView.text = "0"
+            }
+            if(dealerMoney - (totalBetAmount*2) >= 0){
+                dealerMoney -= (totalBetAmount*2)
+                //dealerMoneyTextView.text = dealerMoney.toString()
+            }
+            totalBetAmount += (totalBetAmount*2)
+            totalBetAmountTextView.text = totalBetAmount.toString()
         }
-        if(dealerMoney - (totalBetAmount*2) >= 0){
-            dealerMoney -= (totalBetAmount*2)
-            //dealerMoneyTextView.text = dealerMoney.toString()
-        }
-        totalBetAmount += (totalBetAmount*2)
-        totalBetAmountTextView.text = totalBetAmount.toString()
+
     }
 
     /*
