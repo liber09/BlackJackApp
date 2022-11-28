@@ -205,6 +205,7 @@ class GameActivity : AppCompatActivity() {
         val playerScore = findViewById<TextView>(R.id.playerValueTextView)  // Get a reference to the players score
         val dealerScore = findViewById<TextView>(R.id.dealerValueTextView)
         playerScore.text = playerCards.cardsValue().toString()
+        //Special case when one dealer card is hidden we don't want to reveal the value of the hidden card
         if(!playerStayed){
             dealerScore.text = dealerCards.getCardValue(dealerCards.getCard(1)).toString()
         }else{
@@ -301,12 +302,22 @@ class GameActivity : AppCompatActivity() {
         }else if (playerScore < 22 && playerScore > dealerScore){
             roundResultTextView.text = getString(R.string.Congratulations)
             playerWon = true
-            playerMoney += totalBetAmount
+            if (playerScore == 21){
+                playerMoney += (totalBetAmount*1.5).toInt()
+            }else{
+                playerMoney += totalBetAmount
+            }
+
         //dealer has higher and wins
         }else{
             roundResultTextView.text = getString(R.string.DealerWonRound)
             dealerWon = true
-            dealerMoney += totalBetAmount
+            if (dealerScore == 21){
+                dealerMoney = (totalBetAmount*1.5).toInt()
+            }else{
+                dealerMoney += totalBetAmount
+            }
+
         }
         roundResultTextView.visibility = View.VISIBLE
 

@@ -75,6 +75,7 @@ class Deck {
         return totalValueOnHand
     }
 
+    //Get the int value of a specific card
     fun getCardValue(card: Card):Int{
         var cardValue = 0
         when(card.value){
