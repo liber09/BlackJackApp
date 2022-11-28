@@ -210,9 +210,10 @@ class GameActivity : AppCompatActivity() {
         }else{
             dealerScore.text = dealerCards.cardsValue().toString()
         }
+        if(!playerStayed){
+            checkIfPlayerLostTheGame()
+        }
 
-
-        checkIfPlayerLostTheGame()
     }
 
     //Check if the player lost the round, if so print message to screen
@@ -222,6 +223,7 @@ class GameActivity : AppCompatActivity() {
             val resultTextView = findViewById<TextView>(R.id.roundResultTextView)
             resultTextView.text = getString(R.string.DealerWonRound)
             resultTextView.visibility = View.VISIBLE
+            revealDealerCards()
         }
     }
 
@@ -264,11 +266,6 @@ class GameActivity : AppCompatActivity() {
         while (dealerHandValue < 17){ // check if the dealer has above 17, if nut run loop
             drawDealerCard() //Draw a new card to the dealer
             dealerHandValue = dealerHandValueTextView.text.toString().toInt() // Get the value of dealer cards as int
-            if(dealerHandValue > 21){ // if dealers value on hand is above 21, dealer looses
-                var resultTextView = findViewById<TextView>(R.id.roundResultTextView) // Get the result textview
-                resultTextView.text = getString(R.string.Congratulations) // Set the text for the resultvire
-                resultTextView.visibility = View.VISIBLE // Show the result textview
-            }
         }
         checkWinner() //Check who won
         checkGameOver() //Check if player or dealer out of money
@@ -351,13 +348,11 @@ class GameActivity : AppCompatActivity() {
         drawButton.setOnClickListener {
             setUpGame()
         }
+        playerStayed = false
         resetGUIComponents()
 
     }
 
-    fun nextRound() {
-
-    }
     fun resetGUIComponents(){
         val playerCard1 = findViewById<ImageView>(R.id.playerCardImageView1)
         val playerCard2 = findViewById<ImageView>(R.id.playerCardImageView2)
