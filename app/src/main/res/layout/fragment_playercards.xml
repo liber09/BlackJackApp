@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:visibility="visible">
 
     <ImageView
-        android:id="@+id/playerFirstCardImageView"
+        android:id="@+id/playerCardImageView1"
         android:layout_width="80dp"
         android:layout_height="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,12 +19,64 @@
         app:srcCompat="@drawable/back" />
 
     <ImageView
-        android:id="@+id/playerSecondCardImageView"
+        android:id="@+id/playerCardImageView2"
         android:layout_width="80dp"
         android:layout_height="150sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.922"
+        app:srcCompat="@drawable/back" />
+
+    <ImageView
+        android:id="@+id/playerCardImageView3"
+        android:layout_width="80dp"
+        android:layout_height="150sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.922"
+        app:srcCompat="@drawable/back" />
+
+    <ImageView
+        android:id="@+id/playerCardImageView4"
+        android:layout_width="80dp"
+        android:layout_height="150sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.649"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.922"
+        app:srcCompat="@drawable/back" />
+
+    <ImageView
+        android:id="@+id/playerCardImageView5"
+        android:layout_width="80dp"
+        android:layout_height="150sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.74"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.922"
+        app:srcCompat="@drawable/back" />
+
+    <ImageView
+        android:id="@+id/playerCardImageView6"
+        android:layout_width="80dp"
+        android:layout_height="150sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.891"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.922"

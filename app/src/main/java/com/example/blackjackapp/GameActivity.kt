@@ -10,7 +10,6 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import org.w3c.dom.Text
 
 class GameActivity : AppCompatActivity() {
     val gameDeck = Deck() // The card deck
@@ -140,15 +139,11 @@ class GameActivity : AppCompatActivity() {
     and finally commit the transaction to show the fragments on screen.
      */
     fun addInitialCards() {
-        val initialDealerCardFragment = DealerCardFragment() // Creates the fragment with dealers initial cards
-        val initialPlayerCardFragment = PlayerCardFragment() // Creates the fragment with players initial cards
-        val newPlayerCardFragment = NewPlayerCardFragment() // Creates the fragment with players additional cards
-        val newDealerCadFragment = NewDealerCardFragment() // Creates the fragment with dealers additional cards
+        val dealerCardFragment = DealerCardFragment() // Creates the fragment with dealer cards
+        val playerCardFragment = PlayerCardFragment() // Creates the fragment with player cards
         val transaction = supportFragmentManager.beginTransaction() // initiate transaction
-        transaction.add(R.id.dealerCardContainer, initialDealerCardFragment, "initialDealerCardFragment") // Adds to the transaction where you want your fragment, which fragment and a tag with fragment class name
-        transaction.add(R.id.playerCardContainer, initialPlayerCardFragment, "initialPlayerCardFragment") // Adds to the transaction where you want your fragment, which fragment and a tag with fragment class name
-        transaction.add(R.id.playerCardContainer, newPlayerCardFragment,"newPlayerCardFragment")
-        transaction.add(R.id.dealerCardContainer, newDealerCadFragment, "newDealerCardFragment")
+        transaction.add(R.id.dealerCardContainer, dealerCardFragment, "initialDealerCardFragment") // Adds to the transaction where you want your fragment, which fragment and a tag with fragment class name
+        transaction.add(R.id.playerCardContainer, playerCardFragment, "initialPlayerCardFragment") // Adds to the transaction where you want your fragment, which fragment and a tag with fragment class name
         transaction.commitNow() // Commits the transaction to show the fragment on screen
     }
 
@@ -165,12 +160,12 @@ class GameActivity : AppCompatActivity() {
         var dealerCard = dealerCards.getCard(1)
         var fileName = dealerCard.toString()
         dealerCard.imageName = fileName
-        val dealerSecondCard = findViewById<ImageView>(R.id.dealerSecondCard)
+        val dealerSecondCard = findViewById<ImageView>(R.id.dealerCardImageView2)
         var uriDealer = "@drawable/".plus(dealerCard.imageName)
         var imageResourceDealer = resources.getIdentifier(uriDealer, null, packageName)
         dealerSecondCard.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResourceDealer))
 
-        val dealerFirstCardPlaceholder = findViewById<ImageView>(R.id.dealerFirstCard)
+        val dealerFirstCardPlaceholder = findViewById<ImageView>(R.id.dealerCardImageView1)
         uriDealer = "@drawable/".plus("back")
         imageResourceDealer = resources.getIdentifier(uriDealer, null, packageName)
         dealerFirstCardPlaceholder.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResourceDealer))
@@ -178,7 +173,7 @@ class GameActivity : AppCompatActivity() {
         var playerCardOne = playerCards.getCard(0)
         fileName = playerCardOne.toString()
         playerCardOne.imageName = fileName
-        val playerFirstCardPlaceholder = findViewById<ImageView>(R.id.playerFirstCardImageView)
+        val playerFirstCardPlaceholder = findViewById<ImageView>(R.id.playerCardImageView1)
         val uri1Player = "@drawable/".plus(playerCardOne.imageName)
         val imageResource1Player = resources.getIdentifier(uri1Player, null, packageName)
         playerFirstCardPlaceholder.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResource1Player))
@@ -186,7 +181,7 @@ class GameActivity : AppCompatActivity() {
         var playerCardTwo = playerCards.getCard(1)
         fileName = playerCardTwo.toString()
         playerCardTwo.imageName = fileName
-        val playerSecondCardPlaceholder = findViewById<ImageView>(R.id.playerSecondCardImageView)
+        val playerSecondCardPlaceholder = findViewById<ImageView>(R.id.playerCardImageView2)
         val uri2Player = "@drawable/".plus(playerCardTwo.imageName)
         val imageResource2Player = resources.getIdentifier(uri2Player, null, packageName)
         playerSecondCardPlaceholder.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResource2Player))
@@ -241,14 +236,14 @@ class GameActivity : AppCompatActivity() {
             playerCardPlaceholder = findViewById<ImageView>(R.id.playerCardImageView4) // Get the placeholder for where on the screen it should be drawn
         } else if (playerCards.cards.size == 5) { //if it is the third additional card
             playerCardPlaceholder = findViewById<ImageView>(R.id.playerCardImageView5) // Get the placeholder for where on the screen it should be drawn
-        } else { //if it is the sixth addidional card
+        } else { //if it is the sixth additional card
             playerCardPlaceholder = findViewById<ImageView>(R.id.playerCardImageView6) // Get the placeholder for where on the screen it should be drawn
         }
         playerCardPlaceholder.visibility = View.VISIBLE // Make the card visible
         val uriPlayer = "@drawable/".plus(playerCard.imageName) // get the path to where in the project the file is saved
         val imageResource = resources.getIdentifier(uriPlayer, null, packageName) // Get the actual image
         playerCardPlaceholder.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResource)) // Set the image to the placeholder
-        updateCardsValue() // Update the value of cards on the gamingboard
+        updateCardsValue() // Update the value of cards on the gamingBoard
     }
 
     // This function shows the dealers initial hidden card
@@ -258,7 +253,7 @@ class GameActivity : AppCompatActivity() {
         var dealerCard = dealerCards.getCard(0) // get the second card
         var fileName = dealerCard.toString() // Get the filename
         dealerCard.imageName = fileName // Save the filename to the card object
-        val dealerFirstCard = findViewById<ImageView>(R.id.dealerFirstCard) //
+        val dealerFirstCard = findViewById<ImageView>(R.id.dealerCardImageView1) //
         Log.d("!!!", dealerFirstCard.id.toString())
         val uriDealer = "@drawable/".plus(dealerCard.imageName)
         val imageResourceDealer = resources.getIdentifier(uriDealer, null, packageName)
@@ -326,13 +321,13 @@ class GameActivity : AppCompatActivity() {
         var dealerCard = dealerCards.getCard(dealerCards.cards.size - 1)
         val fileName = dealerCard.toString()
         dealerCard.imageName = fileName
-        var dealerCardPlaceholder = findViewById<ImageView>(R.id.newDealerCard3) // First extra card
+        var dealerCardPlaceholder = findViewById<ImageView>(R.id.dealerCardImageView3) // First extra card
         if (dealerCards.cards.size == 4) {
-            dealerCardPlaceholder = findViewById<ImageView>(R.id.newDealerCard4) //Second extra card
+            dealerCardPlaceholder = findViewById<ImageView>(R.id.dealerCardImageView4) //Second extra card
         } else if (playerCards.cards.size == 5) {
-            dealerCardPlaceholder = findViewById<ImageView>(R.id.newDealerCard5) //Third extra card
+            dealerCardPlaceholder = findViewById<ImageView>(R.id.dealerCardImageView5) //Third extra card
         } else {
-            dealerCardPlaceholder = findViewById<ImageView>(R.id.newDealerCard6) //Fourth extra card
+            dealerCardPlaceholder = findViewById<ImageView>(R.id.dealerCardImageView6) //Fourth extra card
         }
         dealerCardPlaceholder.visibility = View.VISIBLE // Make the card visible on screen
         val uriDealer = "@drawable/".plus(dealerCard.imageName)
@@ -364,8 +359,8 @@ class GameActivity : AppCompatActivity() {
 
     }
     fun resetGUIComponents(){
-        val playerCard1 = findViewById<ImageView>(R.id.playerFirstCardImageView)
-        val playerCard2 = findViewById<ImageView>(R.id.playerSecondCardImageView)
+        val playerCard1 = findViewById<ImageView>(R.id.playerCardImageView1)
+        val playerCard2 = findViewById<ImageView>(R.id.playerCardImageView2)
         val playerCard3 = findViewById<ImageView>(R.id.playerCardImageView3)
         val playerCard4 = findViewById<ImageView>(R.id.playerCardImageView4)
         val playerCard5 = findViewById<ImageView>(R.id.playerCardImageView5)
@@ -376,18 +371,18 @@ class GameActivity : AppCompatActivity() {
         playerCard4.setImageDrawable(null)
         playerCard5.setImageDrawable(null)
         playerCard6.setImageDrawable(null)
-        val DealerCard1 = findViewById<ImageView>(R.id.dealerFirstCard)
-        val DealerCard2 = findViewById<ImageView>(R.id.dealerSecondCard)
-        val DealerCard3 = findViewById<ImageView>(R.id.newDealerCard3)
-        val DealerCard4 = findViewById<ImageView>(R.id.newDealerCard4)
-        val DealerCard5 = findViewById<ImageView>(R.id.newDealerCard5)
-        val DealerCard6 = findViewById<ImageView>(R.id.newDealerCard6)
-        DealerCard1.setImageDrawable(null)
-        DealerCard2.setImageDrawable(null)
-        DealerCard3.setImageDrawable(null)
-        DealerCard4.setImageDrawable(null)
-        DealerCard5.setImageDrawable(null)
-        DealerCard6.setImageDrawable(null)
+        val dealerCard1 = findViewById<ImageView>(R.id.dealerCardImageView1)
+        val dealerCard2 = findViewById<ImageView>(R.id.dealerCardImageView2)
+        val dealerCard3 = findViewById<ImageView>(R.id.dealerCardImageView3)
+        val dealerCard4 = findViewById<ImageView>(R.id.dealerCardImageView4)
+        val dealerCard5 = findViewById<ImageView>(R.id.dealerCardImageView5)
+        val dealerCard6 = findViewById<ImageView>(R.id.dealerCardImageView6)
+        dealerCard1.setImageDrawable(null)
+        dealerCard2.setImageDrawable(null)
+        dealerCard3.setImageDrawable(null)
+        dealerCard4.setImageDrawable(null)
+        dealerCard5.setImageDrawable(null)
+        dealerCard6.setImageDrawable(null)
         val playerScore = findViewById<TextView>(R.id.playerValueTextView)
         val dealerScore = findViewById<TextView>(R.id.dealerValueTextView)
         playerScore.text = "0"
