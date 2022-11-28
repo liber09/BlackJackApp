@@ -206,7 +206,7 @@ class GameActivity : AppCompatActivity() {
         val dealerScore = findViewById<TextView>(R.id.dealerValueTextView)
         playerScore.text = playerCards.cardsValue().toString()
         if(!playerStayed){
-            dealerScore.text = dealerCards.getCard(1).value.getValue().toString()
+            dealerScore.text = dealerCards.getCardValue(dealerCards.getCard(1)).toString()
         }else{
             dealerScore.text = dealerCards.cardsValue().toString()
         }
@@ -271,7 +271,7 @@ class GameActivity : AppCompatActivity() {
         checkGameOver() //Check if player or dealer out of money
         var drawButton = findViewById<Button>(R.id.drawButton) // Get a reference to the drawBtton
         drawButton.text = getString(R.string.NextRound)
-        //Set the clickLKistener to reset
+        //Set the clickListener to reset
         drawButton.setOnClickListener {
             resetForNextRound()
         }

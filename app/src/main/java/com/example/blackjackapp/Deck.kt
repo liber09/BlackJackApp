@@ -75,6 +75,26 @@ class Deck {
         return totalValueOnHand
     }
 
+    fun getCardValue(card: Card):Int{
+        var cardValue = 0
+        when(card.value){
+            Value.TWO -> cardValue = 2
+            Value.THREE -> cardValue = 3
+            Value.FOUR -> cardValue = 4
+            Value.FIVE -> cardValue = 5
+            Value.SIX -> cardValue = 6
+            Value.SEVEN -> cardValue = 7
+            Value.EIGHT -> cardValue = 8
+            Value.NINE -> cardValue = 9
+            Value.TEN,Value.JACK,Value.QUEEN,Value.KING -> cardValue = 10
+            Value.ACE -> cardValue = 11
+            else ->{
+                Log.d("!!!","Something gone wrong when reading card value.")
+            }
+        }
+        return cardValue
+    }
+
     // Returns the number of cards in deck.
     fun getDeckSize() : Int{
         return this.cards.size
