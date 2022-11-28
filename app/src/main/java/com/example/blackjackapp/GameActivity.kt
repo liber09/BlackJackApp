@@ -15,14 +15,14 @@ class GameActivity : AppCompatActivity() {
     val gameDeck = Deck() // The card deck
     val dealerCards = Deck() // The cards that the dealer has on hand
     val playerCards = Deck() // The cards that the player has on hand
-    var playerMoney = 1500
-    var dealerMoney = 1500
-    var betPlayer = 0
-    var betDealer = 0
-    var totalBetAmount = 0
-    var playerStayed = false
-    var playerWon = false
-    var dealerWon = false
+    var playerMoney = 1500 //Players initial money
+    var dealerMoney = 1500 //Dealers initial money
+    var betPlayer = 0 //How much has the player bet
+    var betDealer = 0 //How much has the dealer bet
+    var totalBetAmount = 0 //Total bet amount
+    var playerStayed = false //Has the player pressed stay
+    var playerWon = false //Has the player won
+    var dealerWon = false //Has the dealer won
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,7 +82,6 @@ class GameActivity : AppCompatActivity() {
      */
     fun betValue(valueOnChip : Int){
         val playerMoneyTextView = findViewById<TextView>(R.id.moneyLeftTextView)
-        //val dealerMoneyTextView = findViewById<TextView>(R.id.dealerMoneyLeftTextView)
         val totalBetAmountTextView = findViewById<TextView>(R.id.totalBetAmountTextView)
         if(playerMoney - valueOnChip >= 0){
             betPlayer = valueOnChip
@@ -101,7 +100,6 @@ class GameActivity : AppCompatActivity() {
 
         // Updates the GUI with the new amounts.
         playerMoneyTextView.text = playerMoney.toString()
-        //dealerMoneyTextView.text = dealerMoney.toString()
         totalBetAmountTextView.text = getString(R.string.TotalBet).plus(" ").plus(totalBetAmount.toString())
     }
 
@@ -125,7 +123,6 @@ class GameActivity : AppCompatActivity() {
             }
             if(dealerMoney - (totalBetAmount*2) >= 0){
                 dealerMoney -= (totalBetAmount*2)
-                //dealerMoneyTextView.text = dealerMoney.toString()
             }
             totalBetAmount += (totalBetAmount*2)
             totalBetAmountTextView.text = totalBetAmount.toString()
@@ -211,6 +208,7 @@ class GameActivity : AppCompatActivity() {
         }else{
             dealerScore.text = dealerCards.cardsValue().toString()
         }
+        //Only do this check if the player has pressed stay
         if(!playerStayed){
             checkIfPlayerLostTheGame()
         }
@@ -219,12 +217,13 @@ class GameActivity : AppCompatActivity() {
 
     //Check if the player lost the round, if so print message to screen
     fun checkIfPlayerLostTheGame(){
-        val playerScore = findViewById<TextView>(R.id.playerValueTextView)
-        if (playerScore.text.toString().toInt() >21){
+        val playerScore = findViewById<TextView>(R.id.playerValueTextView).text.toString().toInt()
+        //Is players score over 21
+        if (playerScore >21){
             val resultTextView = findViewById<TextView>(R.id.roundResultTextView)
             resultTextView.text = getString(R.string.DealerWonRound)
             resultTextView.visibility = View.VISIBLE
-            revealDealerCards()
+            revealDealerCards() //Show the dealers cards and reset the game for next round
         }
     }
 
@@ -256,12 +255,11 @@ class GameActivity : AppCompatActivity() {
         var dealerCard = dealerCards.getCard(0) // get the second card
         var fileName = dealerCard.toString() // Get the filename
         dealerCard.imageName = fileName // Save the filename to the card object
-        val dealerFirstCard = findViewById<ImageView>(R.id.dealerCardImageView1) //
-        Log.d("!!!", dealerFirstCard.id.toString())
-        val uriDealer = "@drawable/".plus(dealerCard.imageName)
-        val imageResourceDealer = resources.getIdentifier(uriDealer, null, packageName)
-        dealerFirstCard.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResourceDealer))
-        updateCardsValue()
+        val dealerFirstCard = findViewById<ImageView>(R.id.dealerCardImageView1) //give the dealer his first card
+        val uriDealer = "@drawable/".plus(dealerCard.imageName) //Filepath to the card image
+        val imageResourceDealer = resources.getIdentifier(uriDealer, null, packageName) //get the actual image
+        dealerFirstCard.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResourceDealer)) //Draw the image to the imageView
+        updateCardsValue() //Update the value of the cards
         var dealerHandValueTextView = findViewById<TextView>(R.id.dealerValueTextView)
         var dealerHandValue = Integer.parseInt(dealerHandValueTextView.text.toString())
         while (dealerHandValue < 17){ // check if the dealer has above 17, if nut run loop
@@ -302,6 +300,7 @@ class GameActivity : AppCompatActivity() {
         }else if (playerScore < 22 && playerScore > dealerScore){
             roundResultTextView.text = getString(R.string.Congratulations)
             playerWon = true
+            //If score 21, pay 1.5 times the amount
             if (playerScore == 21){
                 playerMoney += (totalBetAmount*1.5).toInt()
             }else{
@@ -312,6 +311,7 @@ class GameActivity : AppCompatActivity() {
         }else{
             roundResultTextView.text = getString(R.string.DealerWonRound)
             dealerWon = true
+            //If score 21, pay 1.5 times the amount
             if (dealerScore == 21){
                 dealerMoney = (totalBetAmount*1.5).toInt()
             }else{
@@ -350,21 +350,24 @@ class GameActivity : AppCompatActivity() {
         playerCards.moveAllToStartDeck(gameDeck) //Move the cards back to the deck
         var playerScore = findViewById<TextView>(R.id.playerValueTextView)
         playerScore.text = "0" //Set player score to 0
-        totalBetAmount = 0; //Reset bet amount
+
         var dealerScore = findViewById<TextView>(R.id.dealerValueTextView)
         playerScore.text = "0" //Set dealer score to 0
         //Change text and function of draw button to start
         var drawButton = findViewById<Button>(R.id.drawButton)
         drawButton.text = getString(R.string.Start)
         drawButton.setOnClickListener {
-            setUpGame()
+            setUpGame() //Setup for a new round
         }
         playerStayed = false
-        resetGUIComponents()
+        totalBetAmount = 0; //Reset bet amount
+        resetGUIComponents() //Reset all GUI components
 
     }
 
+    //Reset all GUI components before next round
     fun resetGUIComponents(){
+        //Imageviews
         val playerCard1 = findViewById<ImageView>(R.id.playerCardImageView1)
         val playerCard2 = findViewById<ImageView>(R.id.playerCardImageView2)
         val playerCard3 = findViewById<ImageView>(R.id.playerCardImageView3)
@@ -374,9 +377,13 @@ class GameActivity : AppCompatActivity() {
         playerCard1.setImageDrawable(null)
         playerCard2.setImageDrawable(null)
         playerCard3.setImageDrawable(null)
+        playerCard3.visibility = View.INVISIBLE
         playerCard4.setImageDrawable(null)
+        playerCard4.visibility = View.INVISIBLE
         playerCard5.setImageDrawable(null)
+        playerCard5.visibility = View.INVISIBLE
         playerCard6.setImageDrawable(null)
+        playerCard6.visibility = View.INVISIBLE
         val dealerCard1 = findViewById<ImageView>(R.id.dealerCardImageView1)
         val dealerCard2 = findViewById<ImageView>(R.id.dealerCardImageView2)
         val dealerCard3 = findViewById<ImageView>(R.id.dealerCardImageView3)
@@ -386,9 +393,13 @@ class GameActivity : AppCompatActivity() {
         dealerCard1.setImageDrawable(null)
         dealerCard2.setImageDrawable(null)
         dealerCard3.setImageDrawable(null)
+        dealerCard3.visibility = View.INVISIBLE
         dealerCard4.setImageDrawable(null)
+        dealerCard4.visibility = View.INVISIBLE
         dealerCard5.setImageDrawable(null)
+        dealerCard5.visibility = View.INVISIBLE
         dealerCard6.setImageDrawable(null)
+        dealerCard6.visibility = View.INVISIBLE
         val playerScore = findViewById<TextView>(R.id.playerValueTextView)
         val dealerScore = findViewById<TextView>(R.id.dealerValueTextView)
         playerScore.text = "0"
@@ -404,13 +415,17 @@ class GameActivity : AppCompatActivity() {
         val stayButton = findViewById<Button>(R.id.stayButton)
         stayButton.isEnabled = false
     }
+
+    //Is the game over, meaning is any player out of money
     fun checkGameOver(){
+        //Has the player lost all money
         if(playerMoney == 0){
             val lostScreen = Intent(this,LostActivity::class.java) //Get a reference to the game lost screen
-            startActivity(lostScreen)
+            startActivity(lostScreen)//Show player has lost screen
+        //Has the dealer lost all money
         }else if(dealerMoney == 0){
             val winScreen = Intent(this,WinActivity::class.java) //Get a reference to the game lost screen
-            startActivity(winScreen)
+            startActivity(winScreen)  //Show player has won screen
         }
 
     }
