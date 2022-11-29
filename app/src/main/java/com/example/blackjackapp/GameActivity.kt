@@ -34,6 +34,7 @@ class GameActivity : AppCompatActivity() {
 
         //Setup clickHandler for drawButton. This Button clickEvent changes during the game
         val drawButtonClick = findViewById<Button>(R.id.drawButton)
+        drawButtonClick.text = getString(R.string.Start) //For some strange reason button is without text so added this here.
         drawButtonClick.setOnClickListener() {
             setUpGame()
         }
