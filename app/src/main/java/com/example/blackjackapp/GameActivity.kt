@@ -119,16 +119,33 @@ class GameActivity : AppCompatActivity() {
             if(playerMoney - (totalBetAmount*2) >= 0){
                 playerMoney -= (totalBetAmount*2)
                 playerMoneyTextView.text = playerMoney.toString()
+                if(dealerMoney - (totalBetAmount*2) >= 0){
+                    dealerMoney -= (totalBetAmount*2)
+                    totalBetAmount += (totalBetAmount*2)
+                    totalBetAmountTextView.text = totalBetAmount.toString()
+                }else{
+                    betDealer = dealerMoney
+                    dealerMoney = 0
+                    totalBetAmount = totalBetAmount + betDealer + betPlayer
+                    totalBetAmountTextView.text = totalBetAmount.toString()
+                }
             }else{
+                betPlayer = playerMoney
+                playerMoney = 0
                 playerMoneyTextView.text = "0"
+                if(dealerMoney - betPlayer >= 0){
+                    betDealer = betPlayer
+                    dealerMoney -= betDealer
+                    totalBetAmount = totalBetAmount + betDealer + betPlayer
+                    totalBetAmountTextView.text = totalBetAmount.toString()
+                }else{
+                    betDealer = dealerMoney
+                    dealerMoney = 0
+                    totalBetAmount = totalBetAmount + betDealer + betPlayer
+                    totalBetAmountTextView.text = totalBetAmount.toString()
+                }
             }
-            if(dealerMoney - (totalBetAmount*2) >= 0){
-                dealerMoney -= (totalBetAmount*2)
-            }
-            totalBetAmount += (totalBetAmount*2)
-            totalBetAmountTextView.text = totalBetAmount.toString()
         }
-
     }
 
     /*
