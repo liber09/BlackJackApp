@@ -172,19 +172,19 @@ class GameActivity : AppCompatActivity() {
         playerMoneyTextView.text = playerMoney.toString()
 
         //Use the suit and value of card to generate filename to be able to dynamically set image to card
-        var dealerCard = dealerCards.getCard(1)
-        var fileName = dealerCard.toString()
-        dealerCard.imageName = fileName
-        val dealerSecondCard = findViewById<ImageView>(R.id.dealerCardImageView2)
-        var uriDealer = "@drawable/".plus(dealerCard.imageName)
-        var imageResourceDealer = resources.getIdentifier(uriDealer, null, packageName)
-        dealerSecondCard.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResourceDealer))
+        var dealerCard = dealerCards.getCard(1) //Show dealers second card, first shows only back
+        var fileName = dealerCard.toString() //Get the filename
+        dealerCard.imageName = fileName //Set filename to imageName
+        val dealerSecondCard = findViewById<ImageView>(R.id.dealerCardImageView2) //get reference to the imageView
+        var uriDealer = "@drawable/".plus(dealerCard.imageName) //Get filePath
+        var imageResourceDealer = resources.getIdentifier(uriDealer, null, packageName) //Get the actual image
+        dealerSecondCard.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResourceDealer)) //Show the image on screen
 
-        val dealerFirstCardPlaceholder = findViewById<ImageView>(R.id.dealerCardImageView1)
-        uriDealer = "@drawable/".plus("back")
+        val dealerFirstCardPlaceholder = findViewById<ImageView>(R.id.dealerCardImageView1) //dealers first card
+        uriDealer = "@drawable/".plus("back") //get image path
         imageResourceDealer = resources.getIdentifier(uriDealer, null, packageName)
         dealerFirstCardPlaceholder.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResourceDealer))
-
+        //Players first card
         var playerCardOne = playerCards.getCard(0)
         fileName = playerCardOne.toString()
         playerCardOne.imageName = fileName
@@ -192,7 +192,7 @@ class GameActivity : AppCompatActivity() {
         val uri1Player = "@drawable/".plus(playerCardOne.imageName)
         val imageResource1Player = resources.getIdentifier(uri1Player, null, packageName)
         playerFirstCardPlaceholder.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResource1Player))
-
+        //Players second card
         var playerCardTwo = playerCards.getCard(1)
         fileName = playerCardTwo.toString()
         playerCardTwo.imageName = fileName
@@ -201,8 +201,9 @@ class GameActivity : AppCompatActivity() {
         val imageResource2Player = resources.getIdentifier(uri2Player, null, packageName)
         playerSecondCardPlaceholder.setImageBitmap(BitmapFactory.decodeResource(getResources(), imageResource2Player))
 
-        updateCardsValue()
+        updateCardsValue() //Set value to each star
 
+        //Change drawButton click method and text to draw
         val drawButton = findViewById<Button>(R.id.drawButton)
         drawButton.text = getString(R.string.Draw)
         drawButton.setOnClickListener {
@@ -230,7 +231,6 @@ class GameActivity : AppCompatActivity() {
         if(!playerStayed){
             checkIfPlayerLostTheGame()
         }
-
     }
 
     //Check if the player lost the round, if so print message to screen
